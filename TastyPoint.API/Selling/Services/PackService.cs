@@ -61,8 +61,8 @@ public class PackService: IPackService
         if (existingPack == null)
             return new PackResponse("Pack not found");
 
-        existingPack.name = pack.name;
-        existingPack.price = pack.price;
+        existingPack.Name = pack.Name;
+        existingPack.Price = pack.Price;
 
         try
         {

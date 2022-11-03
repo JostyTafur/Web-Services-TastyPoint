@@ -2,9 +2,9 @@
 
 public class Product
 {
-    public int id { get; set; }
-    public string name { get; set; }
-    public string type { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Type { get; set; }
 
     //Relationships
     public int PackId { get; set; }

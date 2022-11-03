@@ -28,14 +28,14 @@ public class ProductRepository: BaseRepository, IProductRepository
     {
         return await _context.Products
             .Include(p => p.Pack)
-            .FirstOrDefaultAsync(p => p.id == productId);
+            .FirstOrDefaultAsync(p => p.Id == productId);
     }
 
     public async Task<Product> FindByNameAsync(string name)
     {
         return await _context.Products
             .Include(p => p.Pack)
-            .FirstOrDefaultAsync(p => p.name == name);
+            .FirstOrDefaultAsync(p => p.Name == name);
     }
 
     public async Task<IEnumerable<Product>> FindByPackIdAsync(int packId)

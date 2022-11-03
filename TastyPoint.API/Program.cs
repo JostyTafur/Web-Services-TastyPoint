@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 using TastyPoint.API.Selling.Domain.Repositories;
 using TastyPoint.API.Selling.Domain.Services;
 using TastyPoint.API.Selling.Persistence.Repositories;
@@ -47,7 +48,29 @@ builder.Services.AddAutoMapper(
     typeof(TastyPoint.API.Selling.Mapping.ModelToResourceProfile),
     typeof(TastyPoint.API.Selling.Mapping.ResourceToModelProfile));
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+    {
+        options.SwaggerDoc("v1", new OpenApiInfo
+        {
+            Version = "v1",
+            Title = "Tasty Point API",
+            Description = "Tasty Point Restfull API",
+            TermsOfService = new Uri("https://TastyPoint/TermsOfService"),
+            Contact = new OpenApiContact
+            {
+                Name = "Tasty Point Studio",
+                Url = new Uri("https://TastyPoint.Studio")
+            },
+            License = new OpenApiLicense
+            {
+                Name = "Tasty Point Resources Licenses",
+                Url = new Uri("https://TastyPoint/Licenses")
+            }
+        });
+        options.EnableAnnotations();
+    }
+);
+
 
 var app = builder.Build();
 

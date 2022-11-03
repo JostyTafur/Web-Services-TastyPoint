@@ -52,7 +52,7 @@ public class ProductService: IProductService
         if (existingPack == null)
             return new ProductResponse("Invalid Pack");
 
-        var existingProductWithName = await _productRepository.FindByNameAsync(product.name);
+        var existingProductWithName = await _productRepository.FindByNameAsync(product.Name);
 
         if (existingProductWithName != null)
             return new ProductResponse("Product name already exists");
@@ -79,12 +79,12 @@ public class ProductService: IProductService
         if (existingPack == null)
             return new ProductResponse("Invalid Pack");
 
-        var existingProductWithName = await _productRepository.FindByNameAsync(product.name);
-        if (existingProductWithName != null && existingProductWithName.id != existingProduct.id)
+        var existingProductWithName = await _productRepository.FindByNameAsync(product.Name);
+        if (existingProductWithName != null && existingProductWithName.Id != existingProduct.Id)
             return new ProductResponse("This Product name already exists");
 
-        existingProduct.name = product.name;
-        existingProduct.type = product.type;
+        existingProduct.Name = product.Name;
+        existingProduct.Type = product.Type;
 
         try
         {

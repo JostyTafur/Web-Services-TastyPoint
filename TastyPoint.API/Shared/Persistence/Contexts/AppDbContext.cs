@@ -19,16 +19,16 @@ public class AppDbContext: DbContext
 
         //Product Entity Mapping Configuration
         builder.Entity<Product>().ToTable("Products");
-        builder.Entity<Product>().HasKey(p => p.id);
-        builder.Entity<Product>().Property(p => p.id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<Product>().Property(p => p.name).IsRequired().HasMaxLength(100);
-        builder.Entity<Product>().Property(p => p.type).IsRequired().HasMaxLength(50);
+        builder.Entity<Product>().HasKey(p => p.Id);
+        builder.Entity<Product>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Product>().Property(p => p.Name).IsRequired().HasMaxLength(100);
+        builder.Entity<Product>().Property(p => p.Type).IsRequired().HasMaxLength(50);
 
         //Pack Entity Mapping Configuration
         builder.Entity<Pack>().ToTable("Packs");
-        builder.Entity<Pack>().HasKey(p => p.id);
-        builder.Entity<Pack>().Property(p => p.id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<Pack>().Property(p => p.name).IsRequired().HasMaxLength(100);
+        builder.Entity<Pack>().HasKey(p => p.Id);
+        builder.Entity<Pack>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Pack>().Property(p => p.Name).IsRequired().HasMaxLength(100);
 
         //Relationships
         builder.Entity<Pack>()

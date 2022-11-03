@@ -1,10 +1,10 @@
 ﻿using System.Net.Mime;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using TastyPoint.API.Selling.Domain.Models;
 using TastyPoint.API.Selling.Domain.Services;
 using TastyPoint.API.Selling.Resources;
-using TastyPoint.API.Shared.Extensions;
 
 namespace TastyPoint.API.Selling.Interfaces.Rest.Controllers;
 
@@ -23,6 +23,12 @@ public class PackProductsController: ControllerBase
     }
 
     [HttpGet]
+    [SwaggerOperation(
+        Summary = "Get All Products for given Pack",
+        Description = "Get existing Products associated with specified Pack",
+        OperationId = "GetPackProducts",
+        Tags = new []{"Packs"}
+    )]
     public async Task<IEnumerable<ProductResource>> GetAllByPackIdAsync(int packId)
     {
         var products = await _productService.ListByPackIdAsync(packId);
