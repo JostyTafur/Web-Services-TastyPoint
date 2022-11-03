@@ -30,6 +30,14 @@ public class ProductController: ControllerBase
 
         return resources;
     }
+    
+    [HttpGet("{id}")]
+    public async Task<ProductResource> GetByIdAsync(int id)
+    {
+        var product = await _productService.FindByIdAsync(id);
+        var resource = _mapper.Map<Product, ProductResource>(product.Resource);
+        return resource;
+    }
 
     [HttpPost]
     public async Task<IActionResult> PostAsync([FromBody] SaveProductResource resource)

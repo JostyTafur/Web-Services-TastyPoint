@@ -29,15 +29,32 @@ public class ProductService: IProductService
         return await _productRepository.FindByPackIdAsync(packId);
     }
 
+    public async Task<ProductResponse> FindByIdAsync(int productId)
+    {
+        var existingProduct = await _productRepository.FindByIdAsync(productId);
+        if (existingProduct == null)
+            return new ProductResponse("Product not found");
+
+        try
+        {
+            await _unitOfWork.CompleteAsync();
+            return new ProductResponse(existingProduct);
+        }
+        catch (Exception e)
+        {
+            return new ProductResponse($"An error occurred while saving the category: {e.Message}");
+        }
+    }
+
     public async Task<ProductResponse> SaveAsync(Product product)
     {
         var existingPack = await _packRepository.FindByIdAsync(product.PackId);
         if (existingPack == null)
             return new ProductResponse("Invalid Pack");
 
-        var existingProductWithTitle = await _productRepository.FindByNameAsync(product.name);
+        var existingProductWithName = await _productRepository.FindByNameAsync(product.name);
 
-        if (existingProductWithTitle != null)
+        if (existingProductWithName != null)
             return new ProductResponse("Product name already exists");
         try
         {

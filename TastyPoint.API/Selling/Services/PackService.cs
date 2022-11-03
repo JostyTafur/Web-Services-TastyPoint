@@ -22,6 +22,24 @@ public class PackService: IPackService
         return await _packRepository.ListAsync();
     }
 
+    public async Task<PackResponse> FindByIdAsync(int packId)
+    {
+        var existingPack = await _packRepository.FindByIdAsync(packId);
+        
+        if (existingPack == null)
+            return new PackResponse("Pack not found");
+
+        try
+        {
+            await _unitOfWork.CompleteAsync();
+            return new PackResponse(existingPack);
+        }
+        catch (Exception e)
+        {
+            return new PackResponse($"An error occurred while saving the category: {e.Message}");
+        }
+    }
+
     public async Task<PackResponse> SaveAsync(Pack pack)
     {
         try

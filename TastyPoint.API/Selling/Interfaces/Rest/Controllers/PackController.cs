@@ -28,6 +28,14 @@ public class PackController:ControllerBase
         return resources;
     }
 
+    [HttpGet("{id}")]
+    public async Task<PackResource> GetByIdAsync(int id)
+    {
+        var pack = await _packService.FindByIdAsync(id);
+        var resource = _mapper.Map<Pack, PackResource>(pack.Resource);
+        return resource;
+    }
+
     [HttpPost]
     public async Task<IActionResult> PostAsync([FromBody] SavePackResource resource)
     {
