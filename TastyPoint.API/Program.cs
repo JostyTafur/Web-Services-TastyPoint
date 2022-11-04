@@ -55,19 +55,19 @@ builder.Services.AddSwaggerGen(options =>
             Version = "v1",
             Title = "Tasty Point API",
             Description = "Tasty Point Restfull API",
-            TermsOfService = new Uri("https://TastyPoint/TermsOfService"),
+            TermsOfService = new Uri("http://TastyPoint/TermsOfService"),
             Contact = new OpenApiContact
             {
                 Name = "Tasty Point Studio",
-                Url = new Uri("https://TastyPoint.Studio")
+                Url = new Uri("https://tastypoint-appweb.web.app/")
             },
             License = new OpenApiLicense
             {
                 Name = "Tasty Point Resources Licenses",
-                Url = new Uri("https://TastyPoint/Licenses")
+                Url = new Uri("http://TastyPoint/Licenses")
             }
         });
-        options.EnableAnnotations();
+        options.EnableAnnotations(); 
     }
 );
 
