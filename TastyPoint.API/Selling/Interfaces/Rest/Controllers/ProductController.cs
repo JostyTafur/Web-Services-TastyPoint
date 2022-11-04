@@ -1,6 +1,7 @@
 ﻿using System.Net.Mime;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using TastyPoint.API.Selling.Domain.Models;
 using TastyPoint.API.Selling.Domain.Services;
 using TastyPoint.API.Selling.Resources;
@@ -23,6 +24,12 @@ public class ProductController: ControllerBase
     }
 
     [HttpGet]
+    [SwaggerOperation(
+        Summary = "Get All Products",
+        Description = "Get all the existing products",
+        OperationId = "GetProduct",
+        Tags = new []{"Products"}
+    )]
     public async Task<IEnumerable<ProductResource>> GetAllAsync()
     {
         var products = await _productService.ListAsync();
@@ -32,6 +39,12 @@ public class ProductController: ControllerBase
     }
     
     [HttpGet("{id}")]
+    [SwaggerOperation(
+        Summary = "Get Product by Id",
+        Description = "Get existing products with specific Id",
+        OperationId = "GetProductById",
+        Tags = new []{"Products"}
+    )]
     public async Task<ProductResource> GetByIdAsync(int id)
     {
         var product = await _productService.FindByIdAsync(id);
@@ -40,6 +53,12 @@ public class ProductController: ControllerBase
     }
 
     [HttpPost]
+    [SwaggerOperation(
+        Summary = "Post Product",
+        Description = "Add new product in the database",
+        OperationId = "PostProduct",
+        Tags = new []{"Products"}
+    )]
     public async Task<IActionResult> PostAsync([FromBody] SaveProductResource resource)
     {
         if (!ModelState.IsValid)
@@ -57,6 +76,12 @@ public class ProductController: ControllerBase
     }
 
     [HttpPut("{id}")]
+    [SwaggerOperation(
+        Summary = "Put Product",
+        Description = "Update some existing product by Id",
+        OperationId = "PutProduct",
+        Tags = new []{"Products"}
+    )]
     public async Task<IActionResult> PutAsync(int id, [FromBody] SaveProductResource resource)
     {
         if (!ModelState.IsValid)
@@ -75,6 +100,12 @@ public class ProductController: ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [SwaggerOperation(
+        Summary = "Delete Product",
+        Description = "Delete some existing product by Id",
+        OperationId = "DeleteProduct",
+        Tags = new []{"Products"}
+    )]
     public async Task<IActionResult> DeleteAsync(int id)
     {
         var result = await _productService.DeleteAsync(id);
