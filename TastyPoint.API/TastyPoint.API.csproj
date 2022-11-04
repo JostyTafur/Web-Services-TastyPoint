@@ -7,7 +7,84 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3"/>
+        <PackageReference Include="AutoMapper" Version="12.0.0" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.10" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="1.1.6" />
+        <PackageReference Include="MySql.EntityFrameworkCore" Version="6.0.7" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+        <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.4.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="IAM\Controllers" />
+      <Folder Include="IAM\Domain" />
+      <Folder Include="IAM\Mapping" />
+      <Folder Include="IAM\Persistence\Repositories" />
+      <Folder Include="IAM\Resources" />
+      <Folder Include="IAM\Services" />
+      <Folder Include="Ordering\Controllers" />
+      <Folder Include="Ordering\Domain" />
+      <Folder Include="Ordering\Mapping" />
+      <Folder Include="Ordering\Persistence\Repositories" />
+      <Folder Include="Ordering\Resources" />
+      <Folder Include="Ordering\Services" />
+      <Folder Include="Profiles\Controllers" />
+      <Folder Include="Profiles\Domain" />
+      <Folder Include="Profiles\Mapping" />
+      <Folder Include="Profiles\Persistence\Repositories" />
+      <Folder Include="Profiles\Resources" />
+      <Folder Include="Profiles\Services" />
+      <Folder Include="Publishing\Controllers" />
+      <Folder Include="Publishing\Domain" />
+      <Folder Include="Publishing\Mapping" />
+      <Folder Include="Publishing\Persistence\Repositories" />
+      <Folder Include="Publishing\Resources" />
+      <Folder Include="Publishing\Services" />
+      <Folder Include="Selling\Interfaces\Internal" />
+      <Folder Include="Social\Controllers" />
+      <Folder Include="Social\Domain" />
+      <Folder Include="Social\Mapping" />
+      <Folder Include="Social\Persistence\Repositories" />
+      <Folder Include="Social\Resources" />
+      <Folder Include="Social\Services" />
+      <Folder Include="Subscription\Controllers" />
+      <Folder Include="Subscription\Domain" />
+      <Folder Include="Subscription\Mapping" />
+      <Folder Include="Subscription\Persistence\Repositories" />
+      <Folder Include="Subscription\Resources" />
+      <Folder Include="Subscription\Services" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Controllers\WeatherForecastController.cs" />
+      <Compile Remove="WeatherForecast.cs" />
+      <Compile Remove="Controllers\**" />
+      <Compile Remove="IAM\Repositories\**" />
+      <Compile Remove="Selling\Domain\Repositories\IPackRepository\**" />
+      <Compile Remove="Selling\Controllers\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Controllers\**" />
+      <EmbeddedResource Remove="IAM\Repositories\**" />
+      <EmbeddedResource Remove="Selling\Domain\Repositories\IPackRepository\**" />
+      <EmbeddedResource Remove="Selling\Controllers\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Controllers\**" />
+      <None Remove="IAM\Repositories\**" />
+      <None Remove="Selling\Domain\Repositories\IPackRepository\**" />
+      <None Remove="Selling\Controllers\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Controllers\**" />
+      <Content Remove="IAM\Repositories\**" />
+      <Content Remove="Selling\Domain\Repositories\IPackRepository\**" />
+      <Content Remove="Selling\Controllers\**" />
     </ItemGroup>
 
 </Project>

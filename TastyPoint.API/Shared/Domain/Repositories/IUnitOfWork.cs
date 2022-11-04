@@ -1,6 +1,6 @@
 ﻿namespace TastyPoint.API.Shared.Domain.Repositories;
 
-public class IUnitofWork
+public interface IUnitOfWork
 {
-    
+    Task CompleteAsync();
 }
