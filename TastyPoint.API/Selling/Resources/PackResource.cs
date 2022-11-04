@@ -2,7 +2,7 @@
 
 public class PackResource
 {
-    public int id { get; set; }
-    public string name { get; set; }
-    public float price { get; set; }
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public float Price { get; set; }
 }

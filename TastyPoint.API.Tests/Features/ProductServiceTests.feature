@@ -12,7 +12,7 @@
             | name || type   || PackId |
             | Rice || supply || 1      |
             Then A Response is received with Status 200
-            And a Tutorial Resource is included in Response Body
+            And a Product Resource is included in Response Body
             | id | name || type   || PackId |
             | 3  | Rice || supply || 1      |
             
