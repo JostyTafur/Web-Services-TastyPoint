@@ -52,9 +52,9 @@ public class ProductsServiceStepDefinitions : WebApplicationFactory<Program>
         Assert.Equal(expectedStatusCode, actualStatusCode);
     }
 
-    [Then(@"a Tutorial Resource is included in Response Body")]
-    public void ThenATutorialResourceIsIncludedInResponseBody(Table table)
+    [Then(@"a Product Resource is included in Response Body")]
+    public void ThenAProductResourceIsIncludedInResponseBody(Table productResource)
     {
-        ScenarioContext.StepIsPending();
+        var resourceExpected = productResource.CreateSet<ProductResource>().First();
     }
 }

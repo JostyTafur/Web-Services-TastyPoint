@@ -64,6 +64,7 @@
       <Compile Remove="IAM\Repositories\**" />
       <Compile Remove="Selling\Domain\Repositories\IPackRepository\**" />
       <Compile Remove="Selling\Controllers\**" />
+      <Compile Remove="Selling\Domain\Models\PackProduct.cs" />
     </ItemGroup>
 
     <ItemGroup>

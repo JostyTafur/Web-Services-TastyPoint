@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using TastyPoint.API.Selling.Domain.Models;
 
 namespace TastyPoint.API.Selling.Resources;
 
@@ -10,4 +11,5 @@ public class SavePackResource
     
     [Required]
     public float Price { get; set; }
+    
 }
