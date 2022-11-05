@@ -1,9 +1,16 @@
 using Microsoft.EntityFrameworkCore;
+
 using Microsoft.OpenApi.Models;
 using TastyPoint.API.Selling.Domain.Repositories;
 using TastyPoint.API.Selling.Domain.Services;
 using TastyPoint.API.Selling.Persistence.Repositories;
 using TastyPoint.API.Selling.Services;
+
+using TastyPoint.API.Ordering.Domain.Repositories;
+using TastyPoint.API.Ordering.Domain.Services;
+using TastyPoint.API.Ordering.Persistence.Repositories;
+using TastyPoint.API.Ordering.Services;
+
 using TastyPoint.API.Shared.Domain.Repositories;
 using TastyPoint.API.Shared.Persistence.Contexts;
 using TastyPoint.API.Shared.Persistence.Repositories;
@@ -42,6 +49,11 @@ builder.Services.AddScoped<IPackService, PackService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 
+//Ordering Bounded Context Dependency Injection Configuration
+
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+
 //AutoMapper Configuration
 
 builder.Services.AddAutoMapper(
@@ -77,6 +89,15 @@ var app = builder.Build();
 //Validation for ensuring Database Objects are created
 
 using (var scope = app.Services.CreateScope())
+    typeof(TastyPoint.API.Ordering.Mapping.ModelToResourceProfile),
+    typeof(TastyPoint.API.Ordering.Mapping.ResourceToModelProfile));
+
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+
 using (var context = scope.ServiceProvider.GetService<AppDbContext>())
 {
     context.Database.EnsureCreated();
@@ -88,7 +109,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
