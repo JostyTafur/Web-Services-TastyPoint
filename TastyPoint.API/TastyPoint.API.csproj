@@ -24,7 +24,6 @@
       <Folder Include="IAM\Persistence\Repositories" />
       <Folder Include="IAM\Resources" />
       <Folder Include="IAM\Services" />
-      <Folder Include="Ordering\Controllers" />
       <Folder Include="Ordering\Domain" />
       <Folder Include="Ordering\Mapping" />
       <Folder Include="Ordering\Persistence\Repositories" />
@@ -65,6 +64,7 @@
       <Compile Remove="Selling\Domain\Repositories\IPackRepository\**" />
       <Compile Remove="Selling\Controllers\**" />
       <Compile Remove="Selling\Domain\Models\PackProduct.cs" />
+      <Compile Remove="Ordering\Controllers\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -72,6 +72,7 @@
       <EmbeddedResource Remove="IAM\Repositories\**" />
       <EmbeddedResource Remove="Selling\Domain\Repositories\IPackRepository\**" />
       <EmbeddedResource Remove="Selling\Controllers\**" />
+      <EmbeddedResource Remove="Ordering\Controllers\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -79,6 +80,7 @@
       <None Remove="IAM\Repositories\**" />
       <None Remove="Selling\Domain\Repositories\IPackRepository\**" />
       <None Remove="Selling\Controllers\**" />
+      <None Remove="Ordering\Controllers\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -86,6 +88,7 @@
       <Content Remove="IAM\Repositories\**" />
       <Content Remove="Selling\Domain\Repositories\IPackRepository\**" />
       <Content Remove="Selling\Controllers\**" />
+      <Content Remove="Ordering\Controllers\**" />
     </ItemGroup>
 
 </Project>

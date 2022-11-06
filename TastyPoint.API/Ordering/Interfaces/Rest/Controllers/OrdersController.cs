@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using TastyPoint.API.Ordering.Domain.Models;
 using TastyPoint.API.Ordering.Domain.Services;
 using TastyPoint.API.Ordering.Resources;
@@ -10,18 +11,24 @@ namespace TastyPoint.API.Ordering.Interfaces.Rest.Controllers;
 
 [ApiController]
 [Route("/api/v1/[controller]")]
-public class OrderController:ControllerBase
+public class OrdersController:ControllerBase
 {
      private readonly IOrderService _orderService;
     private readonly IMapper _mapper;
 
-    public OrderController(IOrderService orderService, IMapper mapper)
+    public OrdersController(IOrderService orderService, IMapper mapper)
     {
         _orderService = orderService;
         _mapper = mapper;
     }
 
     [HttpGet]
+    [SwaggerOperation(
+        Summary = "Get All Orders",
+        Description = "Get all the existing orders",
+        OperationId = "GetOrder",
+        Tags = new []{"Orders"}
+    )]
     public async Task<IEnumerable<OrderResource>> GetAllAsync()
     {
         var orders = await _orderService.ListAsync();

@@ -58,7 +58,9 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 
 builder.Services.AddAutoMapper(
     typeof(TastyPoint.API.Selling.Mapping.ModelToResourceProfile),
-    typeof(TastyPoint.API.Selling.Mapping.ResourceToModelProfile));
+    typeof(TastyPoint.API.Selling.Mapping.ResourceToModelProfile),
+    typeof(TastyPoint.API.Ordering.Mapping.ModelToResourceProfile),
+    typeof(TastyPoint.API.Ordering.Mapping.ResourceToModelProfile));
 
 builder.Services.AddSwaggerGen(options =>
     {
@@ -82,19 +84,9 @@ builder.Services.AddSwaggerGen(options =>
         options.EnableAnnotations(); 
     }
 );
-
-
 var app = builder.Build();
 
 //Validation for ensuring Database Objects are created
-
-using (var scope = app.Services.CreateScope())
-    typeof(TastyPoint.API.Ordering.Mapping.ModelToResourceProfile),
-    typeof(TastyPoint.API.Ordering.Mapping.ResourceToModelProfile));
-
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
 
