@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using TastyPoint.API.Publishing.Domain.Repositories;
+using TastyPoint.API.Publishing.Domain.Services;
+using TastyPoint.API.Publishing.Persistence.Repositories;
+using TastyPoint.API.Publishing.Services;
 using TastyPoint.API.Selling.Domain.Repositories;
 using TastyPoint.API.Selling.Domain.Services;
 using TastyPoint.API.Selling.Persistence.Repositories;
@@ -41,6 +45,9 @@ builder.Services.AddScoped<IPackRepository, PackRepository>();
 builder.Services.AddScoped<IPackService, PackService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IPromotionService, PromotionService>();
+builder.Services.AddScoped<IPromotionRepository, PromotionRepository>();
+
 
 //AutoMapper Configuration
 
