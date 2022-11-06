@@ -5,10 +5,10 @@ namespace TastyPoint.API.Ordering.Resources;
 public class SaveOrderResource
 {
     [Required]
-    public string Delivery_method { get; set; }
+    public string DeliveryMethod { get; set; }
     
     [Required]
-    public float Payment_method { get; set; }
+    public float PaymentMethod { get; set; }
     
     [Required]
     public float Status { get; set; }

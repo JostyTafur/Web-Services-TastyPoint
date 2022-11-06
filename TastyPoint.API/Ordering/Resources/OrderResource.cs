@@ -2,9 +2,9 @@
 
 public class OrderResource
 {
-    public int id { get; set; }
-    public string restaurant { get; set; }
-    public string status { get; set; }
-    public string delivery_method { get; set; }
-    public float payment_method { get; set; }
+    public int Id { get; set; }
+    public string Restaurant { get; set; }
+    public string Status { get; set; }
+    public string DeliveryMethod { get; set; }
+    public float PaymentMethod { get; set; }
 }
