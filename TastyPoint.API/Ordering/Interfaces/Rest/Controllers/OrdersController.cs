@@ -37,6 +37,12 @@ public class OrdersController:ControllerBase
     }
 
     [HttpGet("{id}")]
+    [SwaggerOperation(
+        Summary = "Get Order by Id",
+        Description = "Get existing order with specific Id",
+        OperationId = "GetOrderById",
+        Tags = new []{"Orders"}
+    )]
     public async Task<OrderResource> GetByIdAsync(int id)
     {
         var order = await _orderService.FindByIdAsync(id);
@@ -45,6 +51,12 @@ public class OrdersController:ControllerBase
     }
 
     [HttpPost]
+    [SwaggerOperation(
+        Summary = "Post Order",
+        Description = "Add new order in the database",
+        OperationId = "PostOrder",
+        Tags = new []{"Orders"}
+    )]
     public async Task<IActionResult> PostAsync([FromBody] SaveOrderResource resource)
     {
         if (!ModelState.IsValid)
@@ -63,6 +75,12 @@ public class OrdersController:ControllerBase
     }
 
     [HttpPut("{id}")]
+    [SwaggerOperation(
+        Summary = "Put Order",
+        Description = "Update some existing order by Id",
+        OperationId = "PutOrder",
+        Tags = new []{"Orders"}
+    )]
     public async Task<IActionResult> PutAsync(int id, [FromBody] SaveOrderResource resource)
     {
         if (!ModelState.IsValid)
@@ -81,6 +99,12 @@ public class OrdersController:ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [SwaggerOperation(
+        Summary = "Delete Order",
+        Description = "Delete some existing order by Id",
+        OperationId = "DeleteOrder",
+        Tags = new []{"Orders"}
+    )]
     public async Task<IActionResult> DeleteAsync(int id)
     {
         var result = await _orderService.DeleteAsync(id);
