@@ -46,7 +46,9 @@ builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddAutoMapper(
     typeof(TastyPoint.API.Selling.Mapping.ModelToResourceProfile),
-    typeof(TastyPoint.API.Selling.Mapping.ResourceToModelProfile));
+    typeof(TastyPoint.API.Selling.Mapping.ResourceToModelProfile),
+    typeof(TastyPoint.API.Publishing.Mapping.ModelToResourceProfile),
+    typeof(TastyPoint.API.Publishing.Mapping.ResourceToModelProfile));
 
 builder.Services.AddSwaggerGen(options =>
     {
