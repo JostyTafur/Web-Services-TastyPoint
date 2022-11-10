@@ -2,11 +2,12 @@
 
 namespace TastyPoint.API.Profiles.Domain.Repositories;
 
-public interface IConsumerProfileRepository
+public interface IUserProfileRepository
 {
     Task<IEnumerable<UserProfile>> ListAsync();
-    Task AddAsync(UserProfile consumerProfile);
+    Task AddAsync(UserProfile userProfile);
     Task<UserProfile> FindByIdAsync(int id);
-    void Update(UserProfile consumerProfile);
-    void Remove(UserProfile consumerProfile);
+    Task<UserProfile> FindByUserIdAsync(int userId);
+    void Update(UserProfile userProfile);
+    void Remove(UserProfile userProfile);
 }

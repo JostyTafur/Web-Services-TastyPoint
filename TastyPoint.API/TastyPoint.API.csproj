@@ -30,7 +30,6 @@
       <Folder Include="Ordering\Resources" />
       <Folder Include="Ordering\Services" />
       <Folder Include="Profiles\Controllers" />
-      <Folder Include="Profiles\Domain\Services" />
       <Folder Include="Profiles\Mapping" />
       <Folder Include="Profiles\Persistence\Repositories" />
       <Folder Include="Profiles\Resources" />

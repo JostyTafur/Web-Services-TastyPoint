@@ -8,5 +8,8 @@ public class UserProfile
     public string Type { get; set; }
     
     //Relationships
+    //public int UserId {get; set;}
+    //public User User {get; set;}
     //public int  FoodStoreId {get; set;}
+    //public FoodStore FoodStore {get;set;}
 }
