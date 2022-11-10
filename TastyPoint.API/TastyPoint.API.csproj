@@ -50,7 +50,7 @@
       <Folder Include="Social\Resources" />
       <Folder Include="Social\Services" />
       <Folder Include="Subscription\Controllers" />
-      <Folder Include="Subscription\Domain" />
+      <Folder Include="Subscription\Interfaces" />
       <Folder Include="Subscription\Mapping" />
       <Folder Include="Subscription\Persistence\Repositories" />
       <Folder Include="Subscription\Resources" />
