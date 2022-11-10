@@ -66,6 +66,9 @@
       <Compile Remove="Selling\Domain\Models\PackProduct.cs" />
       <Compile Remove="Ordering\Controllers\**" />
       <Compile Remove="Profiles\Domain\Entities\**" />
+      <Compile Remove="Profiles\Domain\Models\BusinessProfile.cs" />
+      <Compile Remove="Profiles\Domain\Models\ConsumerProfile.cs" />
+      <Compile Remove="Profiles\Domain\Repositories\IBusinessProfileRepository.cs" />
     </ItemGroup>
 
     <ItemGroup>
