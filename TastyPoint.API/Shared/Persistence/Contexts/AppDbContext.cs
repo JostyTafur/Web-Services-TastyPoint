@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TastyPoint.API.Selling.Domain.Models;
 using TastyPoint.API.Ordering.Domain.Models;
+using TastyPoint.API.Security.Domain.Models;
+
 using TastyPoint.API.Shared.Extensions;
 
 namespace TastyPoint.API.Shared.Persistence.Contexts;
@@ -10,6 +12,7 @@ public class AppDbContext: DbContext
     public DbSet<Pack> Packs { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<Order> Orders { get; set; }
+    public DbSet<User> Users { get; set; }
     public AppDbContext(DbContextOptions options) : base(options)
     {
     }
@@ -38,6 +41,14 @@ public class AppDbContext: DbContext
         builder.Entity<Order>().Property(p => p.Restaurant).IsRequired().HasMaxLength(100);
         builder.Entity<Order>().Property(p => p.DeliveryMethod).IsRequired().HasMaxLength(100);
         builder.Entity<Order>().Property(p => p.PaymentMethod).IsRequired().HasMaxLength(100);
+        
+        // User Entity Mapping Configuration
+        builder.Entity<User>().ToTable("Users");
+        builder.Entity<User>().HasKey(p => p.Id);
+        builder.Entity<User>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<User>().Property(p => p.Username).IsRequired().HasMaxLength(30);
+        builder.Entity<User>().Property(p => p.Email).IsRequired().HasMaxLength(30);
+
         
         //Relationships
         builder.Entity<Pack>()
