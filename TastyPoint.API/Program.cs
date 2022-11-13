@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+
 using Microsoft.OpenApi.Models;
 using TastyPoint.API.Publishing.Domain.Repositories;
 using TastyPoint.API.Publishing.Domain.Services;
@@ -8,6 +9,12 @@ using TastyPoint.API.Selling.Domain.Repositories;
 using TastyPoint.API.Selling.Domain.Services;
 using TastyPoint.API.Selling.Persistence.Repositories;
 using TastyPoint.API.Selling.Services;
+
+using TastyPoint.API.Ordering.Domain.Repositories;
+using TastyPoint.API.Ordering.Domain.Services;
+using TastyPoint.API.Ordering.Persistence.Repositories;
+using TastyPoint.API.Ordering.Services;
+
 using TastyPoint.API.Shared.Domain.Repositories;
 using TastyPoint.API.Shared.Persistence.Contexts;
 using TastyPoint.API.Shared.Persistence.Repositories;
@@ -49,6 +56,11 @@ builder.Services.AddScoped<IPromotionService, PromotionService>();
 builder.Services.AddScoped<IPromotionRepository, PromotionRepository>();
 
 
+//Ordering Bounded Context Dependency Injection Configuration
+
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+
 //AutoMapper Configuration
 
 builder.Services.AddAutoMapper(
@@ -56,6 +68,8 @@ builder.Services.AddAutoMapper(
     typeof(TastyPoint.API.Selling.Mapping.ResourceToModelProfile),
     typeof(TastyPoint.API.Publishing.Mapping.ModelToResourceProfile),
     typeof(TastyPoint.API.Publishing.Mapping.ResourceToModelProfile));
+    typeof(TastyPoint.API.Ordering.Mapping.ModelToResourceProfile),
+    typeof(TastyPoint.API.Ordering.Mapping.ResourceToModelProfile));
 
 builder.Services.AddSwaggerGen(options =>
     {
@@ -79,13 +93,12 @@ builder.Services.AddSwaggerGen(options =>
         options.EnableAnnotations(); 
     }
 );
-
-
 var app = builder.Build();
 
 //Validation for ensuring Database Objects are created
 
 using (var scope = app.Services.CreateScope())
+
 using (var context = scope.ServiceProvider.GetService<AppDbContext>())
 {
     context.Database.EnsureCreated();
@@ -97,7 +110,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

@@ -9,12 +9,15 @@
     <ItemGroup>
         <PackageReference Include="AutoMapper" Version="12.0.0" />
         <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
+        <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.10" />
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.10" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="1.1.6" />
         <PackageReference Include="MySql.EntityFrameworkCore" Version="6.0.7" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
         <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.4.0" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.25.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -24,7 +27,6 @@
       <Folder Include="IAM\Persistence\Repositories" />
       <Folder Include="IAM\Resources" />
       <Folder Include="IAM\Services" />
-      <Folder Include="Ordering\Controllers" />
       <Folder Include="Ordering\Domain" />
       <Folder Include="Ordering\Mapping" />
       <Folder Include="Ordering\Persistence\Repositories" />
@@ -41,6 +43,7 @@
       <Folder Include="Publishing\Persistence\Repositories" />
       <Folder Include="Publishing\Resources" />
       <Folder Include="Publishing\Services" />
+      <Folder Include="Security\Mapping" />
       <Folder Include="Selling\Interfaces\Internal" />
       <Folder Include="Social\Controllers" />
       <Folder Include="Social\Domain" />
@@ -64,6 +67,7 @@
       <Compile Remove="Selling\Domain\Repositories\IPackRepository\**" />
       <Compile Remove="Selling\Controllers\**" />
       <Compile Remove="Selling\Domain\Models\PackProduct.cs" />
+      <Compile Remove="Ordering\Controllers\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -71,6 +75,7 @@
       <EmbeddedResource Remove="IAM\Repositories\**" />
       <EmbeddedResource Remove="Selling\Domain\Repositories\IPackRepository\**" />
       <EmbeddedResource Remove="Selling\Controllers\**" />
+      <EmbeddedResource Remove="Ordering\Controllers\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -78,6 +83,7 @@
       <None Remove="IAM\Repositories\**" />
       <None Remove="Selling\Domain\Repositories\IPackRepository\**" />
       <None Remove="Selling\Controllers\**" />
+      <None Remove="Ordering\Controllers\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -85,6 +91,7 @@
       <Content Remove="IAM\Repositories\**" />
       <Content Remove="Selling\Domain\Repositories\IPackRepository\**" />
       <Content Remove="Selling\Controllers\**" />
+      <Content Remove="Ordering\Controllers\**" />
     </ItemGroup>
 
 </Project>

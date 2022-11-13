@@ -1,7 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using TastyPoint.API.Publishing.Domain.Models;
 using TastyPoint.API.Selling.Domain.Models;
+using TastyPoint.API.Ordering.Domain.Models;
+using TastyPoint.API.Security.Domain.Models;
+
 using TastyPoint.API.Shared.Extensions;
 
 namespace TastyPoint.API.Shared.Persistence.Contexts;
@@ -10,15 +13,16 @@ public class AppDbContext: DbContext
 {
     public DbSet<Pack> Packs { get; set; }
     public DbSet<Product> Products { get; set; }
-    
     public DbSet<Promotion> Promotions { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<User> Users { get; set; }
+    
     public AppDbContext(DbContextOptions options) : base(options)
     {
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
-        base.OnModelCreating(builder);
 
         //Product Entity Mapping Configuration
         builder.Entity<Product>().ToTable("Products");
@@ -43,13 +47,30 @@ public class AppDbContext: DbContext
         builder.Entity<Promotion>().Property(p => p.Image).IsRequired().HasMaxLength(100);
         builder.Entity<Promotion>().Property(p => p.PackId).IsRequired();
 
+        //Order Entity Mapping Configuration
+        builder.Entity<Order>().ToTable("Orders");
+        builder.Entity<Order>().HasKey(p => p.Id);
+        builder.Entity<Order>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Order>().Property(p => p.Status).IsRequired().HasMaxLength(100);
+        builder.Entity<Order>().Property(p => p.Restaurant).IsRequired().HasMaxLength(100);
+        builder.Entity<Order>().Property(p => p.DeliveryMethod).IsRequired().HasMaxLength(100);
+        builder.Entity<Order>().Property(p => p.PaymentMethod).IsRequired().HasMaxLength(100);
+        
+        // User Entity Mapping Configuration
+        builder.Entity<User>().ToTable("Users");
+        builder.Entity<User>().HasKey(p => p.Id);
+        builder.Entity<User>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<User>().Property(p => p.Username).IsRequired().HasMaxLength(30);
+        builder.Entity<User>().Property(p => p.Email).IsRequired().HasMaxLength(30);
+
+        
         //Relationships
         builder.Entity<Pack>()
             .HasMany(p => p.Products)
             .WithOne(p => p.Pack)
             .HasForeignKey(p => p.PackId);
 
+        base.OnModelCreating(builder);
         builder.UseSnakeCaseNamingConvention();
     }
-    
 }
