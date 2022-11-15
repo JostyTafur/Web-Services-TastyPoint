@@ -6,7 +6,7 @@ namespace TastyPoint.API.Subscription.Mapping;
 
 public class ModelToResourceProfile : Profile
 {
-    ModelToResourceProfile()
+    public ModelToResourceProfile()
     {
         CreateMap<BusinessPlan, BusinessPlanResource>();
     }

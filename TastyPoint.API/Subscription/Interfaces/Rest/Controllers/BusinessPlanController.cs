@@ -8,7 +8,7 @@ using TastyPoint.API.Subscription.Resources;
 namespace TastyPoint.API.Subscription.Interfaces.Rest.Controllers;
 
 [ApiController]
-[Route("/api/v1/[Controller]")]
+[Route("/api/v1/[controller]")]
 public class BusinessPlanController : ControllerBase
 {
     private readonly IBusinessPlanService _businessPlanService;
