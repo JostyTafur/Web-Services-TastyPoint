@@ -11,6 +11,7 @@ public class UserProfile
     
     //Relationships
     public int UserId {get; set;}
+    public User User { get; set; }
     //public int  FoodStoreId {get; set;}
     //public FoodStore FoodStore {get;set;}
 }
