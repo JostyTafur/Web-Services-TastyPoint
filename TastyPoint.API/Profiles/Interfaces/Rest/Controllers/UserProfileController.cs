@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using TastyPoint.API.Profiles.Domain.Models;
 using TastyPoint.API.Profiles.Domain.Services;
 using TastyPoint.API.Profiles.Resources;
@@ -21,6 +22,12 @@ public class UserProfileController: ControllerBase
     }
 
     [HttpGet("{id}")]
+    [SwaggerOperation(
+        Summary = "Get User Profile by Id",
+        Description = "Get existing user profile with specific Id",
+        OperationId = "GetUserProfileById",
+        Tags = new []{"UserProfiles"}
+    )]
     public async Task<UserProfileResource> GetByIdAsync(int id)
     {
         var userprofile = await _userProfileService.FindByIdAsync(id);
@@ -29,6 +36,12 @@ public class UserProfileController: ControllerBase
     }
 
     [HttpPost]
+    [SwaggerOperation(
+        Summary = "Post User Profile",
+        Description = "Add new user profile in the database",
+        OperationId = "PostUserProfile",
+        Tags = new []{"UserProfiles"}
+    )]
     public async Task<IActionResult> PostAsync([FromBody] SaveUserProfileResource resource)
     {
         if (!ModelState.IsValid)
@@ -47,6 +60,12 @@ public class UserProfileController: ControllerBase
     }
 
     [HttpPut("{id}")]
+    [SwaggerOperation(
+        Summary = "Put User Profile ",
+        Description = "Update some existing user profile by Id",
+        OperationId = "PutUserProfile",
+        Tags = new []{"UserProfiles"}
+    )]
     public async Task<IActionResult> PutAsync(int id, [FromBody] SaveUserProfileResource resource)
     {
         if (!ModelState.IsValid)
@@ -65,6 +84,12 @@ public class UserProfileController: ControllerBase
     }
     
     [HttpDelete("id")]
+    [SwaggerOperation(
+        Summary = "Delete User Profile",
+        Description = "Delete some existing user profile by Id",
+        OperationId = "DeleteUserProfile",
+        Tags = new []{"UserProfile"}
+    )]
     public async Task<IActionResult> DeleteAsync(int id)
     {
         var result = await _userProfileService.DeleteAsync(id);

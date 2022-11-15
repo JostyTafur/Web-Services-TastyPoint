@@ -22,7 +22,7 @@ public class UsersController : ControllerBase
         _mapper = mapper;
     }
 
-    [Microsoft.AspNetCore.Authorization.AllowAnonymous]
+    [AllowAnonymous]
     [HttpPost("sign-in")]
     public async Task<ActionResult> Authenticate(AuthenticateRequest request)
     {
