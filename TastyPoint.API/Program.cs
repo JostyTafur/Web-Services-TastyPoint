@@ -1,6 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 
 using Microsoft.OpenApi.Models;
+using TastyPoint.API.Publishing.Domain.Repositories;
+using TastyPoint.API.Publishing.Domain.Services;
+using TastyPoint.API.Publishing.Persistence.Repositories;
+using TastyPoint.API.Publishing.Services;
 using TastyPoint.API.Selling.Domain.Repositories;
 using TastyPoint.API.Selling.Domain.Services;
 using TastyPoint.API.Selling.Persistence.Repositories;
@@ -48,6 +52,9 @@ builder.Services.AddScoped<IPackRepository, PackRepository>();
 builder.Services.AddScoped<IPackService, PackService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IPromotionService, PromotionService>();
+builder.Services.AddScoped<IPromotionRepository, PromotionRepository>();
+
 
 //Ordering Bounded Context Dependency Injection Configuration
 
@@ -59,6 +66,8 @@ builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddAutoMapper(
     typeof(TastyPoint.API.Selling.Mapping.ModelToResourceProfile),
     typeof(TastyPoint.API.Selling.Mapping.ResourceToModelProfile),
+    typeof(TastyPoint.API.Publishing.Mapping.ModelToResourceProfile),
+    typeof(TastyPoint.API.Publishing.Mapping.ResourceToModelProfile));
     typeof(TastyPoint.API.Ordering.Mapping.ModelToResourceProfile),
     typeof(TastyPoint.API.Ordering.Mapping.ResourceToModelProfile));
 
