@@ -1,4 +1,6 @@
-﻿namespace TastyPoint.API.Profiles.Domain.Models;
+﻿using TastyPoint.API.Security.Domain.Models;
+
+namespace TastyPoint.API.Profiles.Domain.Models;
 
 public class UserProfile
 {
@@ -8,8 +10,8 @@ public class UserProfile
     public string Type { get; set; }
     
     //Relationships
-    //public int UserId {get; set;}
-    //public User User {get; set;}
+    public int UserId {get; set;}
+    public User User { get; set; }
     //public int  FoodStoreId {get; set;}
     //public FoodStore FoodStore {get;set;}
 }

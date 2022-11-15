@@ -16,7 +16,14 @@ using TastyPoint.API.Ordering.Domain.Repositories;
 using TastyPoint.API.Ordering.Domain.Services;
 using TastyPoint.API.Ordering.Persistence.Repositories;
 using TastyPoint.API.Ordering.Services;
-
+using TastyPoint.API.Security.Authorization.Handlers.Implementations;
+using TastyPoint.API.Security.Authorization.Handlers.Interfaces;
+using TastyPoint.API.Security.Authorization.Middleware;
+using TastyPoint.API.Security.Authorization.Settings;
+using TastyPoint.API.Security.Domain.Repositories;
+using TastyPoint.API.Security.Domain.Services;
+using TastyPoint.API.Security.Persistence;
+using TastyPoint.API.Security.Services;
 using TastyPoint.API.Shared.Domain.Repositories;
 using TastyPoint.API.Shared.Persistence.Contexts;
 using TastyPoint.API.Shared.Persistence.Repositories;
@@ -54,26 +61,33 @@ builder.Services.AddScoped<IPackRepository, PackRepository>();
 builder.Services.AddScoped<IPackService, PackService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+
+//Publishing Bounded Context Dependency Injection Configuration
+
 builder.Services.AddScoped<IPromotionService, PromotionService>();
 builder.Services.AddScoped<IPromotionRepository, PromotionRepository>();
-
 
 //Ordering Bounded Context Dependency Injection Configuration
 
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 
-//builder.Services.AddScoped<IPromotionRepository, PromotionRepository>();
-//builder.Services.AddScoped<IPromotionService, PromotionService>();
+//Security Bounded Context Dependency Injection Configuration
+builder.Services.AddScoped<IJwtHandler, JwtHandler>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 //AutoMapper Configuration
 
 builder.Services.AddAutoMapper(
     typeof(TastyPoint.API.Selling.Mapping.ModelToResourceProfile),
     typeof(TastyPoint.API.Selling.Mapping.ResourceToModelProfile),
     typeof(TastyPoint.API.Publishing.Mapping.ModelToResourceProfile),
-    typeof(TastyPoint.API.Publishing.Mapping.ResourceToModelProfile));
+    typeof(TastyPoint.API.Publishing.Mapping.ResourceToModelProfile),
     typeof(TastyPoint.API.Ordering.Mapping.ModelToResourceProfile),
-    typeof(TastyPoint.API.Ordering.Mapping.ResourceToModelProfile));
+    typeof(TastyPoint.API.Ordering.Mapping.ResourceToModelProfile),
+    typeof(TastyPoint.API.Security.Mapping.ModelToResourceProfile),
+    typeof(TastyPoint.API.Security.Mapping.ResourceToModelProfile));
 
 builder.Services.AddSwaggerGen(options =>
     {
@@ -97,12 +111,15 @@ builder.Services.AddSwaggerGen(options =>
         options.EnableAnnotations(); 
     }
 );
+
+//AppSettings Configuration
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+
 var app = builder.Build();
 
 //Validation for ensuring Database Objects are created
 
 using (var scope = app.Services.CreateScope())
-
 using (var context = scope.ServiceProvider.GetService<AppDbContext>())
 {
     context.Database.EnsureCreated();
@@ -112,8 +129,23 @@ using (var context = scope.ServiceProvider.GetService<AppDbContext>())
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("v1/swagger.json", "v1");
+        options.RoutePrefix = "swagger";
+    });
 }
+
+//Configure CORS
+app.UseCors(x => x
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
+
+app.UseMiddleware<ErrorHandlerMiddleware>();
+
+app.UseMiddleware<JwtMiddleware>();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
@@ -121,3 +153,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program{}

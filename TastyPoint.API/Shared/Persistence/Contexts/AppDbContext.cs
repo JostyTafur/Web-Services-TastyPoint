@@ -6,6 +6,7 @@ using TastyPoint.API.Ordering.Domain.Models;
 
 using TastyPoint.API.Security.Domain.Models;
 using TastyPoint.API.Profiles.Domain.Models;
+using TastyPoint.API.Profiles.Resources;
 using TastyPoint.API.Shared.Extensions;
 
 namespace TastyPoint.API.Shared.Persistence.Contexts;
@@ -65,12 +66,26 @@ public class AppDbContext: DbContext
         builder.Entity<User>().Property(p => p.Username).IsRequired().HasMaxLength(30);
         builder.Entity<User>().Property(p => p.Email).IsRequired().HasMaxLength(30);
 
+        //User Profile Mapping Configuration
+        builder.Entity<UserProfile>().ToTable("UserProfiles");
+        builder.Entity<UserProfile>().HasKey(p => p.Id);
+        builder.Entity<UserProfile>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<UserProfile>().Property(p => p.Name).HasMaxLength(100);
+        builder.Entity<UserProfile>().Property(p => p.Type).IsRequired().HasMaxLength(30);
+        builder.Entity<UserProfile>().Property(p => p.PhoneNumber).HasMaxLength(30);
+        builder.Entity<UserProfile>().Property(p => p.UserId).IsRequired();
         
         //Relationships
         builder.Entity<Pack>()
             .HasMany(p => p.Products)
             .WithOne(p => p.Pack)
             .HasForeignKey(p => p.PackId);
+        
+        builder.Entity<UserProfile>()
+            .HasOne(p => p.User)
+            .WithOne()
+            .HasForeignKey<UserProfile>(p => p.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         base.OnModelCreating(builder);
         builder.UseSnakeCaseNamingConvention();
