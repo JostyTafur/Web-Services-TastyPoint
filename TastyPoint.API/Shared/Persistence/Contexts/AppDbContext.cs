@@ -3,8 +3,9 @@ using Microsoft.EntityFrameworkCore.Query.Internal;
 using TastyPoint.API.Publishing.Domain.Models;
 using TastyPoint.API.Selling.Domain.Models;
 using TastyPoint.API.Ordering.Domain.Models;
-using TastyPoint.API.Security.Domain.Models;
 
+using TastyPoint.API.Security.Domain.Models;
+using TastyPoint.API.Profiles.Domain.Models;
 using TastyPoint.API.Shared.Extensions;
 
 namespace TastyPoint.API.Shared.Persistence.Contexts;
@@ -16,6 +17,7 @@ public class AppDbContext: DbContext
     public DbSet<Promotion> Promotions { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<User> Users { get; set; }
+    public DbSet<UserProfile> UserProfiles { get; set; }
     
     public AppDbContext(DbContextOptions options) : base(options)
     {
