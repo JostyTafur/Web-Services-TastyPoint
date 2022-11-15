@@ -33,7 +33,6 @@
       <Folder Include="Ordering\Resources" />
       <Folder Include="Ordering\Services" />
       <Folder Include="Profiles\Interfaces\Internal" />
-      <Folder Include="Profiles\Interfaces\Rest" />
       <Folder Include="Publishing\Domain" />
       <Folder Include="Publishing\Persistence\Repositories" />
       <Folder Include="Publishing\Resources" />
