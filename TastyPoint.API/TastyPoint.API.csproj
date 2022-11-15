@@ -35,12 +35,10 @@
       <Folder Include="Profiles\Interfaces\Internal" />
       <Folder Include="Profiles\Interfaces\Rest" />
       <Folder Include="Profiles\Services" />
-      <Folder Include="Publishing\Controllers" />
       <Folder Include="Publishing\Domain" />
       <Folder Include="Publishing\Persistence\Repositories" />
       <Folder Include="Publishing\Resources" />
       <Folder Include="Publishing\Services" />
-      <Folder Include="Security\Mapping" />
       <Folder Include="Selling\Interfaces\Internal" />
       <Folder Include="Social\Controllers" />
       <Folder Include="Social\Domain" />
@@ -70,6 +68,7 @@
       <Compile Remove="Profiles\Domain\Models\ConsumerProfile.cs" />
       <Compile Remove="Profiles\Domain\Repositories\IBusinessProfileRepository.cs" />
       <Compile Remove="Profiles\Controllers\**" />
+      <Compile Remove="Publishing\Controllers\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -80,6 +79,7 @@
       <EmbeddedResource Remove="Ordering\Controllers\**" />
       <EmbeddedResource Remove="Profiles\Domain\Entities\**" />
       <EmbeddedResource Remove="Profiles\Controllers\**" />
+      <EmbeddedResource Remove="Publishing\Controllers\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -90,6 +90,7 @@
       <None Remove="Ordering\Controllers\**" />
       <None Remove="Profiles\Domain\Entities\**" />
       <None Remove="Profiles\Controllers\**" />
+      <None Remove="Publishing\Controllers\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -100,6 +101,7 @@
       <Content Remove="Ordering\Controllers\**" />
       <Content Remove="Profiles\Domain\Entities\**" />
       <Content Remove="Profiles\Controllers\**" />
+      <Content Remove="Publishing\Controllers\**" />
     </ItemGroup>
 
 </Project>
