@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TastyPoint.API.Selling.Domain.Models;
 using TastyPoint.API.Ordering.Domain.Models;
+using TastyPoint.API.Profiles.Domain.Models;
 using TastyPoint.API.Shared.Extensions;
 
 namespace TastyPoint.API.Shared.Persistence.Contexts;
@@ -10,6 +11,8 @@ public class AppDbContext: DbContext
     public DbSet<Pack> Packs { get; set; }
     public DbSet<Product> Products { get; set; }
     public DbSet<Order> Orders { get; set; }
+    
+    public DbSet<UserProfile> UserProfiles { get; set; }
     public AppDbContext(DbContextOptions options) : base(options)
     {
     }
