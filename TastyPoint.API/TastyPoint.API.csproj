@@ -44,7 +44,6 @@
       <Folder Include="Publishing\Persistence\Repositories" />
       <Folder Include="Publishing\Resources" />
       <Folder Include="Publishing\Services" />
-      <Folder Include="Security\Mapping" />
       <Folder Include="Selling\Interfaces\Internal" />
       <Folder Include="Social\Controllers" />
       <Folder Include="Social\Domain" />
