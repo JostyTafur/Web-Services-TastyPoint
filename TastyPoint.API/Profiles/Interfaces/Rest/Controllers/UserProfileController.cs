@@ -88,7 +88,7 @@ public class UserProfileController: ControllerBase
         Summary = "Delete User Profile",
         Description = "Delete some existing user profile by Id",
         OperationId = "DeleteUserProfile",
-        Tags = new []{"UserProfile"}
+        Tags = new []{"UserProfiles"}
     )]
     public async Task<IActionResult> DeleteAsync(int id)
     {
