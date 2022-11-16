@@ -84,7 +84,7 @@ public class AppDbContext: DbContext
         builder.Entity<UserProfile>()
             .HasOne(p => p.User)
             .WithOne()
-            .HasForeignKey<UserProfile>(p => p.UserId)
+            .HasForeignKey<User>(p => p.Id)
             .OnDelete(DeleteBehavior.Cascade);
 
         base.OnModelCreating(builder);

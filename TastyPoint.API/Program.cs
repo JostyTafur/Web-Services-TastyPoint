@@ -16,6 +16,10 @@ using TastyPoint.API.Ordering.Domain.Repositories;
 using TastyPoint.API.Ordering.Domain.Services;
 using TastyPoint.API.Ordering.Persistence.Repositories;
 using TastyPoint.API.Ordering.Services;
+using TastyPoint.API.Profiles.Domain.Repositories;
+using TastyPoint.API.Profiles.Domain.Services;
+using TastyPoint.API.Profiles.Persistence.Repositories;
+using TastyPoint.API.Profiles.Services;
 using TastyPoint.API.Security.Authorization.Handlers.Implementations;
 using TastyPoint.API.Security.Authorization.Handlers.Interfaces;
 using TastyPoint.API.Security.Authorization.Middleware;
@@ -77,6 +81,10 @@ builder.Services.AddScoped<IJwtHandler, JwtHandler>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 
+//User Profile Bounded Context Dependency Injection Configuration
+builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
+builder.Services.AddScoped<IUserProfileService, UserProfileService>();
+
 //AutoMapper Configuration
 
 builder.Services.AddAutoMapper(
@@ -87,7 +95,10 @@ builder.Services.AddAutoMapper(
     typeof(TastyPoint.API.Ordering.Mapping.ModelToResourceProfile),
     typeof(TastyPoint.API.Ordering.Mapping.ResourceToModelProfile),
     typeof(TastyPoint.API.Security.Mapping.ModelToResourceProfile),
-    typeof(TastyPoint.API.Security.Mapping.ResourceToModelProfile));
+    typeof(TastyPoint.API.Security.Mapping.ResourceToModelProfile),
+    typeof(TastyPoint.API.Profiles.Mapping.ModelToResourceProfile),
+    typeof(TastyPoint.API.Profiles.Mapping.ResourceToModelProfile));
+
 
 builder.Services.AddSwaggerGen(options =>
     {
