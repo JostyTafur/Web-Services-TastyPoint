@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using TastyPoint.API.Security.Authorization.Attributes;
+using Microsoft.AspNetCore.Authorization;
 using TastyPoint.API.Security.Domain.Models;
 using TastyPoint.API.Security.Domain.Services;
 using TastyPoint.API.Security.Domain.Services.Communication;
