@@ -8,6 +8,7 @@ using TastyPoint.API.Security.Domain.Models;
 using TastyPoint.API.Profiles.Domain.Models;
 using TastyPoint.API.Profiles.Resources;
 using TastyPoint.API.Shared.Extensions;
+using TastyPoint.API.Social.Domain.Models;
 
 namespace TastyPoint.API.Shared.Persistence.Contexts;
 
@@ -20,6 +21,10 @@ public class AppDbContext: DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<UserProfile> UserProfiles { get; set; }
     
+    public DbSet<FoodStore> FoodStores { get; set; }
+    
+    public DbSet<Comment> Comments { get; set; }
+
     public AppDbContext(DbContextOptions options) : base(options)
     {
     }
