@@ -1,8 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using TastyPoint.API.Selling.Domain.Models;
 using TastyPoint.API.Shared.Extensions;
-using TastyPoint.API.Subscription.Domain.Models;
 
 namespace TastyPoint.API.Shared.Persistence.Contexts;
 

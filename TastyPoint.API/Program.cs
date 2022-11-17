@@ -7,10 +7,6 @@ using TastyPoint.API.Selling.Services;
 using TastyPoint.API.Shared.Domain.Repositories;
 using TastyPoint.API.Shared.Persistence.Contexts;
 using TastyPoint.API.Shared.Persistence.Repositories;
-using TastyPoint.API.Subscription.Domain.Repositories;
-using TastyPoint.API.Subscription.Domain.Services;
-using TastyPoint.API.Subscription.Persistence.Repositories;
-using TastyPoint.API.Subscription.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,8 +41,6 @@ builder.Services.AddScoped<IPackRepository, PackRepository>();
 builder.Services.AddScoped<IPackService, PackService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
-builder.Services.AddScoped<IBusinessPlanRepository, BusinessPlanRepository>();
-builder.Services.AddScoped<IBusinessPlanService, BusinessPlanService>();
 
 //AutoMapper Configuration
 
@@ -55,6 +49,16 @@ builder.Services.AddAutoMapper(
     typeof(TastyPoint.API.Selling.Mapping.ResourceToModelProfile),
     typeof(TastyPoint.API.Subscription.Mapping.ModelToResourceProfile),
     typeof(TastyPoint.API.Subscription.Mapping.ResourceToModelProfile));
+    typeof(TastyPoint.API.Selling.Mapping.ResourceToModelProfile),
+    typeof(TastyPoint.API.Publishing.Mapping.ModelToResourceProfile),
+    typeof(TastyPoint.API.Publishing.Mapping.ResourceToModelProfile),
+    typeof(TastyPoint.API.Ordering.Mapping.ModelToResourceProfile),
+    typeof(TastyPoint.API.Ordering.Mapping.ResourceToModelProfile),
+    typeof(TastyPoint.API.Security.Mapping.ModelToResourceProfile),
+    typeof(TastyPoint.API.Security.Mapping.ResourceToModelProfile),
+    typeof(TastyPoint.API.Profiles.Mapping.ModelToResourceProfile),
+    typeof(TastyPoint.API.Profiles.Mapping.ResourceToModelProfile));
+
 
 builder.Services.AddSwaggerGen(options =>
     {

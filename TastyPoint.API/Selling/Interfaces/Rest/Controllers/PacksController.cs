@@ -10,12 +10,12 @@ namespace TastyPoint.API.Selling.Interfaces.Rest.Controllers;
 
 [ApiController]
 [Route("/api/v1/[controller]")]
-public class PackController:ControllerBase
+public class PacksController:ControllerBase
 {
     private readonly IPackService _packService;
     private readonly IMapper _mapper;
 
-    public PackController(IPackService packService, IMapper mapper)
+    public PacksController(IPackService packService, IMapper mapper)
     {
         _packService = packService;
         _mapper = mapper;
