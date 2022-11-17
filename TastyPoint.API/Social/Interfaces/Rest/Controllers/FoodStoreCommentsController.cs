@@ -27,7 +27,7 @@ public class FoodStoreCommentsController: ControllerBase
         Summary = "Get All Comments for given Food Store",
         Description = "Get existing Comments associated with specified FoodStore",
         OperationId = "GetFoodStoreComments",
-        Tags = new []{"FoodStore"}
+        Tags = new []{"FoodStores"}
     )]
     public async Task<IEnumerable<CommentResource>> GetAllByFoodStoreIdAsync(int foodStoreId)
     {

@@ -45,6 +45,23 @@ public class AppDbContext: DbContext
         builder.Entity<Pack>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Pack>().Property(p => p.Name).IsRequired().HasMaxLength(100);
         
+        //Comment Entity Mapping Configuration
+        builder.Entity<Comment>().ToTable("Comments");
+        builder.Entity<Comment>().HasKey(p => p.Id);
+        builder.Entity<Comment>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<Comment>().Property(p => p.Rate).IsRequired();
+        builder.Entity<Comment>().Property(p => p.Text).IsRequired().HasMaxLength(500);
+
+        //FoodStore Entity Mapping Configuration
+        builder.Entity<FoodStore>().ToTable("FoodStore");
+        builder.Entity<FoodStore>().HasKey(p => p.Id);
+        builder.Entity<FoodStore>().Property(p => p.Address).HasMaxLength(250);
+        builder.Entity<FoodStore>().Property(p => p.Description).HasMaxLength(1280);
+        builder.Entity<FoodStore>().Property(p => p.Favorite).IsRequired();
+        builder.Entity<FoodStore>().Property(p => p.Image).HasMaxLength(250);
+        builder.Entity<FoodStore>().Property(p => p.Name).HasMaxLength(50);
+        builder.Entity<FoodStore>().Property(p => p.Rate);
+
         //Promotion Entity Mapping Configuration
         builder.Entity<Promotion>().ToTable("Promotions");
         builder.Entity<Promotion>().HasKey(p => p.Id);
@@ -85,6 +102,11 @@ public class AppDbContext: DbContext
             .HasMany(p => p.Products)
             .WithOne(p => p.Pack)
             .HasForeignKey(p => p.PackId);
+
+        builder.Entity<FoodStore>()
+            .HasMany(p => p.Comments)
+            .WithOne(p => p.FoodStore)
+            .HasForeignKey(p => p.FoodStoreId);
         
         builder.Entity<UserProfile>()
             .HasOne(p => p.User)

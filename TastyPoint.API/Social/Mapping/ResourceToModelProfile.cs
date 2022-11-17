@@ -6,7 +6,7 @@ namespace TastyPoint.API.Social.Mapping;
 
 public class ResourceToModelProfile:Profile
 {
-    protected ResourceToModelProfile()
+    public ResourceToModelProfile()
     {
         CreateMap<SaveFoodStoreResource, FoodStore>();
         CreateMap<SaveCommentResource, Comment>();

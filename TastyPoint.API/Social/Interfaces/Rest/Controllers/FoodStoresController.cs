@@ -22,6 +22,12 @@ public class FoodStoresController: ControllerBase
     }
 
     [HttpGet]
+    [SwaggerOperation(
+        Summary = "Get All Food Stores",
+        Description = "Get all the existing Food Stores",
+        OperationId = "GetFoodStore",
+        Tags = new []{"FoodStores"}
+    )]
     public async Task<IEnumerable<FoodStoreResource>> GetAllAsync()
     {
         var foodStores = await _foodStoreService.ListAsync();
@@ -30,6 +36,12 @@ public class FoodStoresController: ControllerBase
     }
     
     [HttpGet("{id}")]
+    [SwaggerOperation(
+        Summary = "Get Food Store by Id",
+        Description = "Get existing Food Store with specific Id",
+        OperationId = "GetFoodStoreById",
+        Tags = new []{"FoodStores"}
+    )]
     public async Task<FoodStoreResource> GetByIdAsync(int id)
     {
         var foodStore = await _foodStoreService.FindByIdAsync(id);
@@ -38,6 +50,12 @@ public class FoodStoresController: ControllerBase
     }
 
     [HttpPost]
+    [SwaggerOperation(
+        Summary = "Post Food Store",
+        Description = "Add new Food Store in the database",
+        OperationId = "PostFoodStore",
+        Tags = new []{"FoodStores"}
+    )]
     public async Task<IActionResult> PostAsync([FromBody] SaveFoodStoreResource resource)
     {
         if (!ModelState.IsValid)
@@ -56,6 +74,12 @@ public class FoodStoresController: ControllerBase
     }
 
     [HttpPut("{id}")]
+    [SwaggerOperation(
+        Summary = "Put Food Store",
+        Description = "Update some existing Food Store by Id",
+        OperationId = "PutFoodStore",
+        Tags = new []{"FoodStores"}
+    )]
     public async Task<IActionResult> PutAsync(int id, [FromBody] SaveFoodStoreResource resource)
     {
         if (!ModelState.IsValid)
@@ -74,6 +98,12 @@ public class FoodStoresController: ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [SwaggerOperation(
+        Summary = "Delete Food Store",
+        Description = "Delete some existing Food Store by Id",
+        OperationId = "DeleteFoodStore",
+        Tags = new []{"FoodStores"}
+    )]
     public async Task<IActionResult> DeleteAsync(int id)
     {
         var result = await _foodStoreService.DeleteAsync(id);
