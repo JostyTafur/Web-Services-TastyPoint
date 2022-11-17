@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using TastyPoint.API.Publishing.Domain.Models;
 using TastyPoint.API.Publishing.Domain.Services;
 using TastyPoint.API.Publishing.Resources;
@@ -23,6 +24,12 @@ public class PromotionController: ControllerBase
     }
     
     [HttpGet]
+    [SwaggerOperation(
+        Summary = "Get All Promotions",
+        Description = "Get all the existing Promotions",
+        OperationId = "GetPromotion",
+        Tags = new []{"Promotions"}
+    )]
     public async Task<IEnumerable<PromotionResource>> GetAllAsync()
     {
         var promotions = await _promotionService.ListAsync();
@@ -31,6 +38,12 @@ public class PromotionController: ControllerBase
     }
     
     [HttpGet("{id}")]
+    [SwaggerOperation(
+        Summary = "Get Promotion by Id",
+        Description = "Get existing Promotions with specific Id",
+        OperationId = "GetPromotionById",
+        Tags = new []{"Promotions"}
+    )]
     public async Task<PromotionResource> GetByIdAsync(int id)
     {
         var promotion = await _promotionService.FindByIdAsync(id);
@@ -39,6 +52,12 @@ public class PromotionController: ControllerBase
     }
 
     [HttpPost]
+    [SwaggerOperation(
+        Summary = "Post Promotion",
+        Description = "Add new Promotion in the database",
+        OperationId = "PostPromotion",
+        Tags = new []{"Promotions"}
+    )]
     public async Task<IActionResult> PostAsync([FromBody] SavePromotionResource resource)
     {
         if (!ModelState.IsValid)
@@ -57,6 +76,12 @@ public class PromotionController: ControllerBase
     }
 
     [HttpPut("{id}")]
+    [SwaggerOperation(
+        Summary = "Put Promotion",
+        Description = "Update some existing Promotion by Id",
+        OperationId = "PutPromotion",
+        Tags = new []{"Promotions"}
+    )]
     public async Task<IActionResult> PutAsync(int id, [FromBody] SavePromotionResource resource)
     {
         if (!ModelState.IsValid)
@@ -75,6 +100,12 @@ public class PromotionController: ControllerBase
     }
 
     [HttpDelete("{id}")]
+    [SwaggerOperation(
+        Summary = "Delete Promotion",
+        Description = "Delete some existing Promotion by Id",
+        OperationId = "DeletePromotion",
+        Tags = new []{"Promotions"}
+    )]
     public async Task<IActionResult> DeleteAsync(int id)
     {
         var result = await _promotionService.DeleteAsync(id);
