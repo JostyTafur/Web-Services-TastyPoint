@@ -6,6 +6,7 @@ using TastyPoint.API.Security.Domain.Services;
 using TastyPoint.API.Security.Domain.Services.Communication;
 using TastyPoint.API.Security.Resources;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace TastyPoint.API.Security.Interfaces.Rest;
 
@@ -25,6 +26,12 @@ public class UsersController : ControllerBase
 
     [AllowAnonymous]
     [HttpPost("sign-in")]
+    [SwaggerOperation(
+        Summary = "Sign In",
+        Description = "User sign in the application",
+        OperationId = "SignIn",
+        Tags = new []{"Users"}
+    )]
     public async Task<ActionResult> Authenticate(AuthenticateRequest request)
     {
         var response = await _userService.Authenticate(request);
@@ -33,6 +40,12 @@ public class UsersController : ControllerBase
 
     [AllowAnonymous]
     [HttpPost("sign-up")]
+    [SwaggerOperation(
+        Summary = "Sign Up",
+        Description = "User sign up the application",
+        OperationId = "SignUp",
+        Tags = new []{"Users"}
+    )]
     public async Task<IActionResult> Register(RegisterRequest request)
     {
         await _userService.RegisterAsync(request);
@@ -40,6 +53,12 @@ public class UsersController : ControllerBase
     }
 
     [HttpGet]
+    [SwaggerOperation(
+        Summary = "Get All Users",
+        Description = "Get all the existing users",
+        OperationId = "GetUsers",
+        Tags = new []{"Users"}
+    )]
     public async Task<IActionResult> GetAll()
     {
         var users = await _userService.ListAsync();
