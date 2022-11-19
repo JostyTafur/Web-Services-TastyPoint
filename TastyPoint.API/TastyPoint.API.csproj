@@ -32,7 +32,6 @@
       <Folder Include="Publishing\Resources" />
       <Folder Include="Publishing\Services" />
       <Folder Include="Selling\Interfaces\Internal" />
-      <Folder Include="Subscription\Controllers" />
     </ItemGroup>
 
     <ItemGroup>
@@ -55,6 +54,7 @@
       <Compile Remove="Social\Domain\Models\Repositories\**" />
       <Compile Remove="Social\Interfaces\Controllers\**" />
       <Compile Remove="Profiles\Interfaces\Rest\Controllers\UserUserProfile.cs" />
+      <Compile Remove="Subscription\Controllers\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -70,6 +70,7 @@
       <EmbeddedResource Remove="Social\Controllers\**" />
       <EmbeddedResource Remove="Social\Domain\Models\Repositories\**" />
       <EmbeddedResource Remove="Social\Interfaces\Controllers\**" />
+      <EmbeddedResource Remove="Subscription\Controllers\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -85,6 +86,7 @@
       <None Remove="Social\Controllers\**" />
       <None Remove="Social\Domain\Models\Repositories\**" />
       <None Remove="Social\Interfaces\Controllers\**" />
+      <None Remove="Subscription\Controllers\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -100,6 +102,7 @@
       <Content Remove="Social\Controllers\**" />
       <Content Remove="Social\Domain\Models\Repositories\**" />
       <Content Remove="Social\Interfaces\Controllers\**" />
+      <Content Remove="Subscription\Controllers\**" />
     </ItemGroup>
 
 </Project>

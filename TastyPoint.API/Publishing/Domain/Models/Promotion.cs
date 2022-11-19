@@ -1,4 +1,5 @@
-﻿using TastyPoint.API.Selling.Domain.Models;
+﻿using TastyPoint.API.Profiles.Domain.Models;
+using TastyPoint.API.Selling.Domain.Models;
 
 namespace TastyPoint.API.Publishing.Domain.Models;
 
@@ -12,7 +13,7 @@ public class Promotion
     public string? Image { get; set; }
     
     //Not sure about the quantity of packs necessary for a Promotion, possible future edit
-    public int PackId { get; set; }
+    public int UserProfileId { get; set; }
     
-    public Pack Pack { get; set; }
+    public UserProfile UserProfile { get; set; }
 }

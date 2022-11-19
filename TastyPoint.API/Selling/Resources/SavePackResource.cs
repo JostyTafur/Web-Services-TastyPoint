@@ -11,4 +11,6 @@ public class SavePackResource
     [Required]
     public float Price { get; set; }
     
+    [Required]
+    public int UserProfileId { get; set; }
 }

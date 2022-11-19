@@ -73,6 +73,9 @@ builder.Services.AddScoped<IPackRepository, PackRepository>();
 builder.Services.AddScoped<IPackService, PackService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+
+//Subscription Bounded Context Dependency Injection Configuration
+
 builder.Services.AddScoped<IBusinessPlanRepository, BusinessPlanRepository>();
 builder.Services.AddScoped<IBusinessPlanService, BusinessPlanService>();
 

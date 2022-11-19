@@ -1,4 +1,6 @@
-﻿namespace TastyPoint.API.Social.Domain.Models;
+﻿using System.Text.Json.Serialization;
+
+namespace TastyPoint.API.Social.Domain.Models;
 
 public class Comment
 {
@@ -8,5 +10,7 @@ public class Comment
     
     //Relationships
     public int FoodStoreId { get; set; }
+    
+    [JsonIgnore]
     public FoodStore FoodStore { get; set; }
 }

@@ -26,7 +26,7 @@ public class UserProfileOrdersController: ControllerBase
     [SwaggerOperation(
         Summary = "Get All Orders for given User Profile",
         Description = "Get existing Orders associated with specified User Profile",
-        OperationId = "GetUserProfileProducts",
+        OperationId = "GetUserProfileOrders",
         Tags = new[] { "Orders" }
     )]
     public async Task<IEnumerable<OrderResource>> GetAllByUserProfileIdAsync(int userProfileId)

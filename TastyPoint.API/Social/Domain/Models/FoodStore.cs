@@ -1,4 +1,5 @@
-﻿using TastyPoint.API.Profiles.Domain.Models;
+﻿using System.Text.Json.Serialization;
+using TastyPoint.API.Profiles.Domain.Models;
 
 namespace TastyPoint.API.Social.Domain.Models;
 
@@ -13,8 +14,12 @@ public class FoodStore
     public string Image { get; set; }
     
     //Relationships
+    [JsonIgnore]
     public IList<Comment> Comments { get; set; } = new List<Comment>();
     
+    [JsonIgnore]
     public int UserProfileId { get; set; }
+    
+    [JsonIgnore]
     public UserProfile UserProfile { get; set; }
 }

@@ -2,6 +2,7 @@
 using TastyPoint.API.Ordering.Domain.Repositories;
 using TastyPoint.API.Ordering.Domain.Services;
 using TastyPoint.API.Ordering.Domain.Services.Communication;
+using TastyPoint.API.Profiles.Domain.Repositories;
 using TastyPoint.API.Shared.Domain.Repositories;
 
 namespace TastyPoint.API.Ordering.Services;
@@ -10,11 +11,13 @@ public class OrderService: IOrderService
 {
     private readonly IOrderRepository _orderRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IUserProfileRepository _userProfileRepository;
 
-    public OrderService(IOrderRepository orderRepository, IUnitOfWork unitOfWork)
+    public OrderService(IOrderRepository orderRepository, IUnitOfWork unitOfWork, IUserProfileRepository userProfileRepository)
     {
         _orderRepository = orderRepository;
         _unitOfWork = unitOfWork;
+        _userProfileRepository = userProfileRepository;
     }
 
     public async Task<IEnumerable<Order>> ListAsync()
@@ -65,6 +68,10 @@ public class OrderService: IOrderService
 
         if (existingOrder == null)
             return new OrderResponse("Pack not found");
+
+        var existingUserProfile = await _userProfileRepository.FindByIdAsync(order.UserProfileId);
+        if (existingUserProfile == null)
+            return new OrderResponse("User Profile not found");
         
         existingOrder.Status = order.Status;
         existingOrder.DeliveryMethod = order.DeliveryMethod;

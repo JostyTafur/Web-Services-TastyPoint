@@ -15,14 +15,3 @@
             And a Product Resource is included in Response Body
             | id | name || type   || PackId |
             | 3  | Rice || supply || 1      |
-            
-        @product-adding
-        Scenario: Add Product with existing Name
-            Given a Product is already stored
-            | id || name     | type   | PackId |
-            | 1  || Potatoes | supply | 1      |
-            When a Post Request is sent
-            | name     | type   | PackId |
-            | Potatoes | supply | 1      |
-            Then A Response is received with Status 400
-            And An Error Message is returned with value "Product name already exists"

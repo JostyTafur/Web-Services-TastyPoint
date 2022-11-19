@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using TastyPoint.API.Shared.Extensions;
 using TastyPoint.API.Subscription.Domain.Models;
 using TastyPoint.API.Subscription.Domain.Services;
@@ -21,6 +22,12 @@ public class BusinessPlanController : ControllerBase
     }
 
     [HttpGet]
+    [SwaggerOperation(
+        Summary = "Get All Business Plan",
+        Description = "Get all the existing Business Plan",
+        OperationId = "GetBusinessPlans",
+        Tags = new []{"BusinessPlans"}
+    )]
     public async Task<IEnumerable<BusinessPlanResource>> GetAllAsync()
     {
         var businessPlan = await _businessPlanService.ListAsync();
@@ -29,7 +36,27 @@ public class BusinessPlanController : ControllerBase
         return resources;
     }
 
+    [HttpGet("{id}")]
+    [SwaggerOperation(
+        Summary = "Get Business Plan by Id",
+        Description = "Get existing Business Plan with specific Id",
+        OperationId = "GetBusinessPlanById",
+        Tags = new[] { "BusinessPlans" }
+    )]
+    public async Task<BusinessPlanResource> GetByIdAsync(int id)
+    {
+        var businessPlan = await _businessPlanService.FindByIdAsync(id);
+        var resource = _mapper.Map<BusinessPlan, BusinessPlanResource>(businessPlan.Resource);
+        return resource;
+    }
+
     [HttpPost]
+    [SwaggerOperation(
+        Summary = "Post Business Plan",
+        Description = "Add new Business Plan in the database",
+        OperationId = "PostBusiness Plan",
+        Tags = new []{"BusinessPlans"}
+    )]
     public async Task<IActionResult> PostAsync([FromBody] SaveBusinessPlanResource resource)
     {
         if (!ModelState.IsValid)
@@ -47,6 +74,12 @@ public class BusinessPlanController : ControllerBase
     }
     
     [HttpPut("{id}")]
+    [SwaggerOperation(
+        Summary = "Put Business Plan",
+        Description = "Update some existing Business Plan by Id",
+        OperationId = "PutBusiness Plan",
+        Tags = new []{"BusinessPlans"}
+    )]
     public async Task<IActionResult> PutAsync(int id, [FromBody] SaveBusinessPlanResource resource)
     {
         if (!ModelState.IsValid)
@@ -64,6 +97,12 @@ public class BusinessPlanController : ControllerBase
     }
     
     [HttpDelete("{id}")]
+    [SwaggerOperation(
+        Summary = "Delete Business Plan",
+        Description = "Delete some existing Business Plan by Id",
+        OperationId = "DeleteBusiness Plan",
+        Tags = new []{"BusinessPlans"}
+    )]
     public async Task<IActionResult> DeleteAsync(int id)
     {
         var result = await _businessPlanService.DeleteAsync(id);
