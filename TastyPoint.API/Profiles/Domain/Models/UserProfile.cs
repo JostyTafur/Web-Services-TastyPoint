@@ -1,4 +1,5 @@
-﻿using TastyPoint.API.Security.Domain.Models;
+﻿using TastyPoint.API.Ordering.Domain.Models;
+using TastyPoint.API.Security.Domain.Models;
 using TastyPoint.API.Social.Domain.Models;
 
 namespace TastyPoint.API.Profiles.Domain.Models;
@@ -13,4 +14,8 @@ public class UserProfile
     //Relationships
     public int UserId {get; set;}
     public User User { get; set; }
+
+    public IList<Order> Orders { get; set; } = new List<Order>();
+    
+    public FoodStore FoodStore { get; set; }
 }

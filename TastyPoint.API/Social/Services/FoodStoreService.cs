@@ -39,6 +39,11 @@ public class FoodStoreService: IFoodStoreService
         }
     }
 
+    public async Task<FoodStore> FindByUserProfileIdAsync(int userProfileId)
+    {
+        return await _foodStoreRepository.FindByUserProfileId(userProfileId);
+    }
+
     public async Task<FoodStoreResponse> SaveAsync(FoodStore foodStore)
     {
         try

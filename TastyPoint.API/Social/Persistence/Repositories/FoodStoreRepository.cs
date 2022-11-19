@@ -14,7 +14,9 @@ public class FoodStoreRepository: BaseRepository, IFoodStoreRepository
 
     public async Task<IEnumerable<FoodStore>> ListAsync()
     {
-        return await _context.FoodStores.ToListAsync();
+        return await _context.FoodStores
+            .Include(p=>p.UserProfile)
+            .ToListAsync();
     }
 
     public async Task AddAsync(FoodStore foodStore)
@@ -24,7 +26,16 @@ public class FoodStoreRepository: BaseRepository, IFoodStoreRepository
 
     public async Task<FoodStore> FindByIdAsync(int id)
     {
-        return await _context.FoodStores.FindAsync(id);
+        return await _context.FoodStores
+            .Include(p => p.UserProfile)
+            .FirstOrDefaultAsync(p => p.Id == id);
+    }
+
+    public async Task<FoodStore> FindByUserProfileId(int userProfileId)
+    {
+        return await _context.FoodStores
+            .Include(p => p.UserProfile)
+            .FirstOrDefaultAsync(p => p.UserProfileId == userProfileId);
     }
 
     public void Update(FoodStore foodStore)

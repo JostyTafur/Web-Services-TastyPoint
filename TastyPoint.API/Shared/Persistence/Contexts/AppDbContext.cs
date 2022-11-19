@@ -71,17 +71,15 @@ public class AppDbContext: DbContext
         builder.Entity<Promotion>().Property(p => p.SubTitle).IsRequired().HasMaxLength(150);
         builder.Entity<Promotion>().Property(p => p.Description).IsRequired().HasMaxLength(500);
         builder.Entity<Promotion>().Property(p => p.Image).IsRequired().HasMaxLength(100);
-        builder.Entity<Promotion>().Property(p => p.PackId).IsRequired();
 
         //Order Entity Mapping Configuration
         builder.Entity<Order>().ToTable("Orders");
         builder.Entity<Order>().HasKey(p => p.Id);
         builder.Entity<Order>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Order>().Property(p => p.Status).IsRequired().HasMaxLength(100);
-        builder.Entity<Order>().Property(p => p.Restaurant).IsRequired().HasMaxLength(100);
         builder.Entity<Order>().Property(p => p.DeliveryMethod).IsRequired().HasMaxLength(100);
         builder.Entity<Order>().Property(p => p.PaymentMethod).IsRequired().HasMaxLength(100);
-        
+
         // User Entity Mapping Configuration
         builder.Entity<User>().ToTable("Users");
         builder.Entity<User>().HasKey(p => p.Id);
@@ -96,7 +94,6 @@ public class AppDbContext: DbContext
         builder.Entity<UserProfile>().Property(p => p.Name).HasMaxLength(100);
         builder.Entity<UserProfile>().Property(p => p.Type).IsRequired().HasMaxLength(30);
         builder.Entity<UserProfile>().Property(p => p.PhoneNumber).HasMaxLength(30);
-        builder.Entity<UserProfile>().Property(p => p.UserId).IsRequired();
         
         //Relationships
         builder.Entity<Pack>()
@@ -114,6 +111,16 @@ public class AppDbContext: DbContext
             .WithOne(p => p.UserProfile)
             .HasForeignKey<UserProfile>(p => p.UserId);
 
+        builder.Entity<UserProfile>()
+            .HasMany(p => p.Orders)
+            .WithOne(p => p.UserProfile)
+            .HasForeignKey(p => p.UserProfileId);
+
+        builder.Entity<FoodStore>()
+            .HasOne(p => p.UserProfile)
+            .WithOne(p => p.FoodStore)
+            .HasForeignKey<FoodStore>(p => p.UserProfileId);
+        
         base.OnModelCreating(builder);
         builder.UseSnakeCaseNamingConvention();
     }
