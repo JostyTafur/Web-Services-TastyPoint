@@ -33,11 +33,6 @@
       <Folder Include="Publishing\Services" />
       <Folder Include="Selling\Interfaces\Internal" />
       <Folder Include="Subscription\Controllers" />
-      <Folder Include="Subscription\Domain" />
-      <Folder Include="Subscription\Mapping" />
-      <Folder Include="Subscription\Persistence\Repositories" />
-      <Folder Include="Subscription\Resources" />
-      <Folder Include="Subscription\Services" />
     </ItemGroup>
 
     <ItemGroup>

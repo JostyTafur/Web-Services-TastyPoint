@@ -8,6 +8,7 @@ using TastyPoint.API.Security.Domain.Models;
 using TastyPoint.API.Profiles.Domain.Models;
 using TastyPoint.API.Profiles.Resources;
 using TastyPoint.API.Shared.Extensions;
+using TastyPoint.API.Subscription.Domain.Models;
 using TastyPoint.API.Social.Domain.Models;
 
 namespace TastyPoint.API.Shared.Persistence.Contexts;
@@ -16,13 +17,12 @@ public class AppDbContext: DbContext
 {
     public DbSet<Pack> Packs { get; set; }
     public DbSet<Product> Products { get; set; }
+    public DbSet<BusinessPlan> BusinessPlans { get; set; }
     public DbSet<Promotion> Promotions { get; set; }
     public DbSet<Order> Orders { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<UserProfile> UserProfiles { get; set; }
-    
     public DbSet<FoodStore> FoodStores { get; set; }
-    
     public DbSet<Comment> Comments { get; set; }
 
     public AppDbContext(DbContextOptions options) : base(options)
@@ -45,6 +45,14 @@ public class AppDbContext: DbContext
         builder.Entity<Pack>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Pack>().Property(p => p.Name).IsRequired().HasMaxLength(100);
         
+        //BusinessPlans Mapping Configuration
+        builder.Entity<BusinessPlan>().ToTable("BusinessPlans");
+        builder.Entity<BusinessPlan>().HasKey(p => p.Id);
+        builder.Entity<BusinessPlan>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<BusinessPlan>().Property(p => p.CurrentPlan).IsRequired().HasMaxLength(100);
+        builder.Entity<BusinessPlan>().Property(p => p.Description).IsRequired().HasMaxLength(500);
+        builder.Entity<BusinessPlan>().Property(p => p.PlanPrice).IsRequired();
+
         //Comment Entity Mapping Configuration
         builder.Entity<Comment>().ToTable("Comments");
         builder.Entity<Comment>().HasKey(p => p.Id);
