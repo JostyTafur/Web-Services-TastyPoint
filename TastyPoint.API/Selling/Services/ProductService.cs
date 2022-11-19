@@ -42,7 +42,7 @@ public class ProductService: IProductService
         }
         catch (Exception e)
         {
-            return new ProductResponse($"An error occurred while saving the category: {e.Message}");
+            return new ProductResponse($"An error occurred while saving the pack: {e.Message}");
         }
     }
 
@@ -64,7 +64,7 @@ public class ProductService: IProductService
         }
         catch (Exception e)
         {
-            return new ProductResponse($"An error occurred while saving the tutorial: {e.Message}");
+            return new ProductResponse($"An error occurred while saving the product: {e.Message}");
         }
     }
 
@@ -95,7 +95,7 @@ public class ProductService: IProductService
         }
         catch (Exception e)
         {
-            return new ProductResponse($"An error occurred while saving the tutorial: {e.Message}");
+            return new ProductResponse($"An error occurred while saving the product: {e.Message}");
         }
     }
 
@@ -114,7 +114,7 @@ public class ProductService: IProductService
         }
         catch (Exception e)
         {
-            return new ProductResponse($"An error occurred while saving the tutorial: {e.Message}");
+            return new ProductResponse($"An error occurred while saving the product: {e.Message}");
         }
     }
 }

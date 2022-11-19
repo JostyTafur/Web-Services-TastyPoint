@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using TastyPoint.API.Selling.Domain.Models;
 
 namespace TastyPoint.API.Selling.Resources;
 
