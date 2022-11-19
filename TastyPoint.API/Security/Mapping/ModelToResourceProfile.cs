@@ -5,7 +5,7 @@ using TastyPoint.API.Security.Resources;
 
 namespace TastyPoint.API.Security.Mapping;
 
-public class ModelToResourceProfile: Profile
+public class ModelToResourceProfile : Profile
 {
     public ModelToResourceProfile()
     {

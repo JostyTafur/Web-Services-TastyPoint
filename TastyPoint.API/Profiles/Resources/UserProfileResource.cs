@@ -1,4 +1,6 @@
-﻿namespace TastyPoint.API.Profiles.Resources;
+﻿using TastyPoint.API.Security.Resources;
+
+namespace TastyPoint.API.Profiles.Resources;
 
 public class UserProfileResource
 {
@@ -8,6 +10,5 @@ public class UserProfileResource
     public string Type { get; set; }
     
     //Relationships
-    //public UserResource User {get; set;}
-    //public FoodStoreResource FoodStore {get;set;}
+    public UserResource User { get; set; }
 }

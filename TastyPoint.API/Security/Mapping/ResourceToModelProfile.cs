@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using TastyPoint.API.Security.Domain.Models;
 using TastyPoint.API.Security.Domain.Services.Communication;
+using Org.BouncyCastle.Asn1.X509;
 
 namespace TastyPoint.API.Security.Mapping;
 
