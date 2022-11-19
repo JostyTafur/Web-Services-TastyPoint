@@ -38,7 +38,12 @@ public class UserProfileService: IUserProfileService
             return new UserProfileResponse($"An error occurred while finding the user profile: {e.Message}");
         }
     }
-    
+
+    public async Task<UserProfile> FindByUserIdAsync(int userId)
+    {
+        return await _userProfileRepository.FindByUserIdAsync(userId);
+    }
+
 
     public async Task<UserProfileResponse> SaveAsync(UserProfile userProfile)
     {

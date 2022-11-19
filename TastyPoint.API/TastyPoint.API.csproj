@@ -59,6 +59,7 @@
       <Compile Remove="Social\Controllers\**" />
       <Compile Remove="Social\Domain\Models\Repositories\**" />
       <Compile Remove="Social\Interfaces\Controllers\**" />
+      <Compile Remove="Profiles\Interfaces\Rest\Controllers\UserUserProfile.cs" />
     </ItemGroup>
 
     <ItemGroup>

@@ -53,11 +53,12 @@ public class AppDbContext: DbContext
         builder.Entity<Comment>().Property(p => p.Text).IsRequired().HasMaxLength(500);
 
         //FoodStore Entity Mapping Configuration
-        builder.Entity<FoodStore>().ToTable("FoodStore");
+        builder.Entity<FoodStore>().ToTable("FoodStores");
         builder.Entity<FoodStore>().HasKey(p => p.Id);
+        builder.Entity<FoodStore>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<FoodStore>().Property(p => p.Address).HasMaxLength(250);
         builder.Entity<FoodStore>().Property(p => p.Description).HasMaxLength(1280);
-        builder.Entity<FoodStore>().Property(p => p.Favorite).IsRequired();
+        builder.Entity<FoodStore>().Property(p => p.Favorite).IsRequired().HasDefaultValue(false);
         builder.Entity<FoodStore>().Property(p => p.Image).HasMaxLength(250);
         builder.Entity<FoodStore>().Property(p => p.Name).HasMaxLength(50);
         builder.Entity<FoodStore>().Property(p => p.Rate);
@@ -107,12 +108,11 @@ public class AppDbContext: DbContext
             .HasMany(p => p.Comments)
             .WithOne(p => p.FoodStore)
             .HasForeignKey(p => p.FoodStoreId);
-        
+
         builder.Entity<UserProfile>()
             .HasOne(p => p.User)
-            .WithOne()
-            .HasForeignKey<User>(p => p.Id)
-            .OnDelete(DeleteBehavior.Cascade);
+            .WithOne(p => p.UserProfile)
+            .HasForeignKey<UserProfile>(p => p.UserId);
 
         base.OnModelCreating(builder);
         builder.UseSnakeCaseNamingConvention();

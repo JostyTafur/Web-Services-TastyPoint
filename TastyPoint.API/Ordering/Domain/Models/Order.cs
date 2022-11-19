@@ -1,4 +1,6 @@
-﻿namespace TastyPoint.API.Ordering.Domain.Models;
+﻿using TastyPoint.API.Security.Domain.Models;
+
+namespace TastyPoint.API.Ordering.Domain.Models;
 
 public class Order
 {
@@ -10,4 +12,7 @@ public class Order
     public string DeliveryMethod { get; set; }
     public string PaymentMethod { get; set; }
     
+    //Relationships
+    public int UserId { get; set; }
+    public User User { get; set; }
 }

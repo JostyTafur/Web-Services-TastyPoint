@@ -14,7 +14,9 @@ public class UserProfileRepository: BaseRepository, IUserProfileRepository
     
     public async Task<IEnumerable<UserProfile>> ListAsync()
     {
-        return await _context.UserProfiles.ToListAsync();
+        return await _context.UserProfiles
+            .Include(p=>p.User)
+            .ToListAsync();
     }
 
     public async Task AddAsync(UserProfile userProfile)
@@ -24,12 +26,16 @@ public class UserProfileRepository: BaseRepository, IUserProfileRepository
 
     public async Task<UserProfile> FindByIdAsync(int id)
     {
-        return await _context.UserProfiles.FindAsync(id);
+        return await _context.UserProfiles
+            .Include(p=>p.User)
+            .FirstOrDefaultAsync(p=>p.Id == id);
     }
 
     public async Task<UserProfile> FindByUserIdAsync(int userId)
     {
-        throw new NotImplementedException();
+        return await _context.UserProfiles
+            .Include(p => p.User)
+            .FirstOrDefaultAsync(p=>p.UserId == userId);
     }
 
     public void Update(UserProfile userProfile)
