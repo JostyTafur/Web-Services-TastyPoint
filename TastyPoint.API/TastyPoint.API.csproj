@@ -32,18 +32,6 @@
       <Folder Include="Publishing\Resources" />
       <Folder Include="Publishing\Services" />
       <Folder Include="Selling\Interfaces\Internal" />
-      <Folder Include="Social\Controllers" />
-      <Folder Include="Social\Domain" />
-      <Folder Include="Social\Mapping" />
-      <Folder Include="Social\Persistence\Repositories" />
-      <Folder Include="Social\Resources" />
-      <Folder Include="Social\Services" />
-      <Folder Include="Subscription\Controllers" />
-      <Folder Include="Subscription\Domain" />
-      <Folder Include="Subscription\Mapping" />
-      <Folder Include="Subscription\Persistence\Repositories" />
-      <Folder Include="Subscription\Resources" />
-      <Folder Include="Subscription\Services" />
     </ItemGroup>
 
     <ItemGroup>
@@ -62,6 +50,11 @@
       <Compile Remove="Profiles\Controllers\**" />
       <Compile Remove="Publishing\Controllers\**" />
       <Compile Remove="IAM\**" />
+      <Compile Remove="Social\Controllers\**" />
+      <Compile Remove="Social\Domain\Models\Repositories\**" />
+      <Compile Remove="Social\Interfaces\Controllers\**" />
+      <Compile Remove="Profiles\Interfaces\Rest\Controllers\UserUserProfile.cs" />
+      <Compile Remove="Subscription\Controllers\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -74,6 +67,10 @@
       <EmbeddedResource Remove="Profiles\Controllers\**" />
       <EmbeddedResource Remove="Publishing\Controllers\**" />
       <EmbeddedResource Remove="IAM\**" />
+      <EmbeddedResource Remove="Social\Controllers\**" />
+      <EmbeddedResource Remove="Social\Domain\Models\Repositories\**" />
+      <EmbeddedResource Remove="Social\Interfaces\Controllers\**" />
+      <EmbeddedResource Remove="Subscription\Controllers\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -86,6 +83,10 @@
       <None Remove="Profiles\Controllers\**" />
       <None Remove="Publishing\Controllers\**" />
       <None Remove="IAM\**" />
+      <None Remove="Social\Controllers\**" />
+      <None Remove="Social\Domain\Models\Repositories\**" />
+      <None Remove="Social\Interfaces\Controllers\**" />
+      <None Remove="Subscription\Controllers\**" />
     </ItemGroup>
 
     <ItemGroup>
@@ -98,6 +99,10 @@
       <Content Remove="Profiles\Controllers\**" />
       <Content Remove="Publishing\Controllers\**" />
       <Content Remove="IAM\**" />
+      <Content Remove="Social\Controllers\**" />
+      <Content Remove="Social\Domain\Models\Repositories\**" />
+      <Content Remove="Social\Interfaces\Controllers\**" />
+      <Content Remove="Subscription\Controllers\**" />
     </ItemGroup>
 
 </Project>

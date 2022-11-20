@@ -22,6 +22,11 @@ public class PackService: IPackService
         return await _packRepository.ListAsync();
     }
 
+    public async Task<IEnumerable<Pack>> ListByUserProfileIdAsync(int userProfileId)
+    {
+        return await _packRepository.FindByUserProfileIdAsync(userProfileId);
+    }
+
     public async Task<PackResponse> FindByIdAsync(int packId)
     {
         var existingPack = await _packRepository.FindByIdAsync(packId);

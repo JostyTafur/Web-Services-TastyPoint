@@ -14,7 +14,17 @@ public class PackRepository: BaseRepository, IPackRepository
 
     public async Task<IEnumerable<Pack>> ListAsync()
     {
-        return await _context.Packs.ToListAsync();
+        return await _context.Packs
+            .Include(p=>p.UserProfile)
+            .ToListAsync();
+    }
+
+    public async Task<IEnumerable<Pack>> FindByUserProfileIdAsync(int userProfileId)
+    {
+        return await _context.Packs
+            .Where(p => p.UserProfileId == userProfileId)
+            .Include(p => p.UserProfile)
+            .ToListAsync();
     }
 
     public async Task AddAsync(Pack pack)
@@ -24,7 +34,9 @@ public class PackRepository: BaseRepository, IPackRepository
 
     public async Task<Pack> FindByIdAsync(int id)
     {
-        return await _context.Packs.FindAsync(id);
+        return await _context.Packs
+            .Include(p=>p.UserProfile)
+            .FirstOrDefaultAsync(p=>p.Id==id);
     }
 
     public void Update(Pack pack)

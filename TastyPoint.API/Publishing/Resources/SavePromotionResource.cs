@@ -6,17 +6,18 @@ namespace TastyPoint.API.Publishing.Resources;
 public class SavePromotionResource
 {
     [Required]
+    [MaxLength(300)]
     public string? Title { get; set; }
     
-    [Required]
+    [MaxLength(300)]
     public string? SubTitle { get; set; }
     
-    [Required]
+    [MaxLength(500)]
     public string? Description { get; set; }
     
-    [Required]
+    [MaxLength(500)]
     public string? Image { get; set; }
     
     [Required]
-    public int? PackId { get; set; }
+    public int UserProfileId { get; set; }
 }

@@ -12,4 +12,7 @@ public class SaveUserProfileResource
     [Required]
     [MaxLength(50)]
     public string Type { get; set; }
+    
+    [Required]
+    public int UserId { get; set; }
 }

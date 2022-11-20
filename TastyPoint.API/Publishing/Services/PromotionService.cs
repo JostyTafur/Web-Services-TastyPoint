@@ -1,4 +1,5 @@
-﻿using TastyPoint.API.Publishing.Domain.Models;
+﻿using TastyPoint.API.Profiles.Domain.Repositories;
+using TastyPoint.API.Publishing.Domain.Models;
 using TastyPoint.API.Publishing.Domain.Repositories;
 using TastyPoint.API.Publishing.Domain.Services;
 using TastyPoint.API.Publishing.Domain.Services.Communication;
@@ -11,13 +12,13 @@ public class PromotionService : IPromotionService
 {
     private readonly IPromotionRepository _promotionRepository;
     private readonly IUnitOfWork _unitOfWork;
-    private readonly IPackRepository _packRepository;
+    private readonly IUserProfileRepository _userProfileRepository;
 
-    public PromotionService(IPromotionRepository promotionRepository, IUnitOfWork unitOfWork, IPackRepository packRepository)
+    public PromotionService(IPromotionRepository promotionRepository, IUnitOfWork unitOfWork, IPackRepository packRepository, IUserProfileRepository userProfileRepository)
     {
         _promotionRepository = promotionRepository;
         _unitOfWork = unitOfWork;
-        _packRepository = packRepository;
+        _userProfileRepository = userProfileRepository;
     }
 
     public async Task<IEnumerable<Promotion>> ListAsync()
@@ -43,6 +44,11 @@ public class PromotionService : IPromotionService
         }
     }
 
+    public async Task<IEnumerable<Promotion>> ListByUserProfileIdAsync(int userProfileId)
+    {
+        return await _promotionRepository.FindByUserProfileIdAsync(userProfileId);
+    }
+
     public async Task<PromotionResponse> SaveAsync(Promotion promotion)
     {
         try
@@ -64,9 +70,9 @@ public class PromotionService : IPromotionService
         if (existingPromotion == null)
             return new PromotionResponse("This promotion doesn't exist or is sold out.");
         
-        var existingPack = await _packRepository.FindByIdAsync(promotion.PackId);
+        var existingUserProfile = await _userProfileRepository.FindByIdAsync(promotion.UserProfileId);
         
-        if (existingPack == null)
+        if (existingUserProfile == null)
             return new PromotionResponse("Invalid Pack");
 
         existingPromotion.Title = promotion.Title;

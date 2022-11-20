@@ -14,7 +14,9 @@ public class OrderRepository: BaseRepository, IOrderRepository
 
     public async Task<IEnumerable<Order>> ListAsync()
     {
-        return await _context.Orders.ToListAsync();
+        return await _context.Orders
+            .Include(p=>p.UserProfile)
+            .ToListAsync();
     }
 
     public async Task AddAsync(Order order)
@@ -24,7 +26,17 @@ public class OrderRepository: BaseRepository, IOrderRepository
 
     public async Task<Order> FindByIdAsync(int id)
     {
-        return await _context.Orders.FindAsync(id);
+        return await _context.Orders
+            .Include(p=>p.UserProfile)
+            .FirstOrDefaultAsync(p=>p.Id == id);
+    }
+
+    public async Task<IEnumerable<Order>> FindByUserProfileIdAsync(int userProfileId)
+    {
+        return await _context.Orders
+            .Where(p => p.UserProfileId == userProfileId)
+            .Include(p => p.UserProfile)
+            .ToListAsync();
     }
 
     public void Update(Order order)

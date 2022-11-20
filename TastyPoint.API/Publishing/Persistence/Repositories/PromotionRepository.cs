@@ -15,7 +15,7 @@ public class PromotionRepository: BaseRepository, IPromotionRepository
     public async Task<IEnumerable<Promotion>> ListAsync()
     {
         return await _context.Promotions
-            .Include(p=>p.Pack)
+            .Include(p=>p.UserProfile)
             .ToListAsync();
     }
 
@@ -27,8 +27,17 @@ public class PromotionRepository: BaseRepository, IPromotionRepository
     public async Task<Promotion> FindByIdAsync(int id)
     {
         return await _context.Promotions
-            .Include(p => p.Pack)
+            .Include(p => p.UserProfile)
             .FirstOrDefaultAsync(p => p.Id == id);
+    }
+
+    public async Task<IEnumerable<Promotion>> FindByUserProfileIdAsync(int userProfileId)
+    {
+        return await _context.Promotions
+            .Where(p => p.UserProfileId == userProfileId)
+            .Include(p => p.UserProfile)
+            .ToListAsync();
+
     }
 
     public void Update(Promotion promotion)

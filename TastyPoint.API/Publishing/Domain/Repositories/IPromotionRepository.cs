@@ -7,6 +7,7 @@ public interface IPromotionRepository
     Task<IEnumerable<Promotion>> ListAsync();
     Task AddAsync(Promotion promotion);
     Task<Promotion> FindByIdAsync(int id);
+    Task<IEnumerable<Promotion>> FindByUserProfileIdAsync(int userProfileId);
     void Update(Promotion promotion);
     void Remove(Promotion promotion);
 }
