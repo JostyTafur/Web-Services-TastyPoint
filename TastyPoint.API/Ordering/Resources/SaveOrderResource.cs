@@ -8,11 +8,11 @@ public class SaveOrderResource
     public string DeliveryMethod { get; set; }
     
     [Required]
-    public float PaymentMethod { get; set; }
+    public string PaymentMethod { get; set; }
     
     [Required]
-    public float Status { get; set; }
-    
+    public string Status { get; set; }
+
     [Required]
-    public float Restaurant { get; set; }
+    public int UserProfileId { get; set; }
 }

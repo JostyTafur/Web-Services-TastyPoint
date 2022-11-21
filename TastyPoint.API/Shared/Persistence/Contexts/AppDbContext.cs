@@ -8,6 +8,8 @@ using TastyPoint.API.Security.Domain.Models;
 using TastyPoint.API.Profiles.Domain.Models;
 using TastyPoint.API.Profiles.Resources;
 using TastyPoint.API.Shared.Extensions;
+using TastyPoint.API.Subscription.Domain.Models;
+using TastyPoint.API.Social.Domain.Models;
 
 namespace TastyPoint.API.Shared.Persistence.Contexts;
 
@@ -20,9 +22,7 @@ public class AppDbContext: DbContext
     public DbSet<Order> Orders { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<UserProfile> UserProfiles { get; set; }
-    
     public DbSet<FoodStore> FoodStores { get; set; }
-    
     public DbSet<Comment> Comments { get; set; }
 
     public AppDbContext(DbContextOptions options) : base(options)
@@ -45,6 +45,14 @@ public class AppDbContext: DbContext
         builder.Entity<Pack>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Pack>().Property(p => p.Name).IsRequired().HasMaxLength(100);
         
+        //BusinessPlans Mapping Configuration
+        builder.Entity<BusinessPlan>().ToTable("BusinessPlans");
+        builder.Entity<BusinessPlan>().HasKey(p => p.Id);
+        builder.Entity<BusinessPlan>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+        builder.Entity<BusinessPlan>().Property(p => p.CurrentPlan).IsRequired().HasMaxLength(100);
+        builder.Entity<BusinessPlan>().Property(p => p.Description).IsRequired().HasMaxLength(500);
+        builder.Entity<BusinessPlan>().Property(p => p.PlanPrice).IsRequired();
+
         //Comment Entity Mapping Configuration
         builder.Entity<Comment>().ToTable("Comments");
         builder.Entity<Comment>().HasKey(p => p.Id);
@@ -71,21 +79,12 @@ public class AppDbContext: DbContext
         builder.Entity<Promotion>().Property(p => p.SubTitle).IsRequired().HasMaxLength(150);
         builder.Entity<Promotion>().Property(p => p.Description).IsRequired().HasMaxLength(500);
         builder.Entity<Promotion>().Property(p => p.Image).IsRequired().HasMaxLength(100);
-        builder.Entity<Promotion>().Property(p => p.PackId).IsRequired();
-        //Pack BusinessPlans Mapping Configuration
-        builder.Entity<BusinessPlan>().ToTable("BusinessPlans");
-        builder.Entity<BusinessPlan>().HasKey(p => p.Id);
-        builder.Entity<BusinessPlan>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
-        builder.Entity<BusinessPlan>().Property(p => p.CurrentPlan).IsRequired().HasMaxLength(100);
-        builder.Entity<BusinessPlan>().Property(p => p.Description).IsRequired().HasMaxLength(500);
-        builder.Entity<BusinessPlan>().Property(p => p.PlanPrice).IsRequired();
 
         //Order Entity Mapping Configuration
         builder.Entity<Order>().ToTable("Orders");
         builder.Entity<Order>().HasKey(p => p.Id);
         builder.Entity<Order>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
         builder.Entity<Order>().Property(p => p.Status).IsRequired().HasMaxLength(100);
-        builder.Entity<Order>().Property(p => p.Restaurant).IsRequired().HasMaxLength(100);
         builder.Entity<Order>().Property(p => p.DeliveryMethod).IsRequired().HasMaxLength(100);
         builder.Entity<Order>().Property(p => p.PaymentMethod).IsRequired().HasMaxLength(100);
         
@@ -121,6 +120,16 @@ public class AppDbContext: DbContext
             .WithOne(p => p.UserProfile)
             .HasForeignKey<UserProfile>(p => p.UserId);
 
+        builder.Entity<UserProfile>()
+            .HasMany(p => p.Orders)
+            .WithOne(p => p.UserProfile)
+            .HasForeignKey(p => p.UserProfileId);
+
+        builder.Entity<FoodStore>()
+            .HasOne(p => p.UserProfile)
+            .WithOne(p => p.FoodStore)
+            .HasForeignKey<FoodStore>(p => p.UserProfileId);
+        
         base.OnModelCreating(builder);
         builder.UseSnakeCaseNamingConvention();
     }

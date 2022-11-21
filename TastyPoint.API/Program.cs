@@ -31,6 +31,10 @@ using TastyPoint.API.Security.Services;
 using TastyPoint.API.Shared.Domain.Repositories;
 using TastyPoint.API.Shared.Persistence.Contexts;
 using TastyPoint.API.Shared.Persistence.Repositories;
+using TastyPoint.API.Subscription.Domain.Repositories;
+using TastyPoint.API.Subscription.Domain.Services;
+using TastyPoint.API.Subscription.Persistence.Repositories;
+using TastyPoint.API.Subscription.Services;
 using TastyPoint.API.Social.Domain.Repositories;
 using TastyPoint.API.Social.Domain.Services;
 using TastyPoint.API.Social.Persistence.Repositories;
@@ -69,6 +73,8 @@ builder.Services.AddScoped<IPackRepository, PackRepository>();
 builder.Services.AddScoped<IPackService, PackService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IBusinessPlanRepository, BusinessPlanRepository>();
+builder.Services.AddScoped<IBusinessPlanService, BusinessPlanService>();
 
 //Publishing Bounded Context Dependency Injection Configuration
 
@@ -100,6 +106,8 @@ builder.Services.AddScoped<IFoodStoreService, FoodStoreService>();
 builder.Services.AddAutoMapper(
     typeof(TastyPoint.API.Selling.Mapping.ModelToResourceProfile),
     typeof(TastyPoint.API.Selling.Mapping.ResourceToModelProfile),
+    typeof(TastyPoint.API.Subscription.Mapping.ModelToResourceProfile),
+    typeof(TastyPoint.API.Subscription.Mapping.ResourceToModelProfile),
     typeof(TastyPoint.API.Publishing.Mapping.ModelToResourceProfile),
     typeof(TastyPoint.API.Publishing.Mapping.ResourceToModelProfile),
     typeof(TastyPoint.API.Ordering.Mapping.ModelToResourceProfile),
@@ -110,7 +118,6 @@ builder.Services.AddAutoMapper(
     typeof(TastyPoint.API.Profiles.Mapping.ResourceToModelProfile),
     typeof(TastyPoint.API.Social.Mapping.ModelToResourceProfile),
     typeof(TastyPoint.API.Social.Mapping.ResourceToModelProfile));
-
 
 builder.Services.AddSwaggerGen(options =>
     {

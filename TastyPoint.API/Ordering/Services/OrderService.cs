@@ -22,6 +22,11 @@ public class OrderService: IOrderService
         return await _orderRepository.ListAsync();
     }
 
+    public async Task<IEnumerable<Order>> ListByUserProfileIdAsync(int userProfileId)
+    {
+        return await _orderRepository.FindByUserProfileIdAsync(userProfileId);
+    }
+
     public async Task<OrderResponse> FindByIdAsync(int orderId)
     {
         var existingOrder = await _orderRepository.FindByIdAsync(orderId);
@@ -60,8 +65,7 @@ public class OrderService: IOrderService
 
         if (existingOrder == null)
             return new OrderResponse("Pack not found");
-
-        existingOrder.Restaurant = order.Restaurant;
+        
         existingOrder.Status = order.Status;
         existingOrder.DeliveryMethod = order.DeliveryMethod;
         existingOrder.PaymentMethod = order.PaymentMethod;

@@ -14,5 +14,7 @@ public class FoodStore
     
     //Relationships
     public IList<Comment> Comments { get; set; } = new List<Comment>();
+    
+    public int UserProfileId { get; set; }
     public UserProfile UserProfile { get; set; }
 }

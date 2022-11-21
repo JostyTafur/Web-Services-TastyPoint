@@ -1,4 +1,4 @@
-﻿using TastyPoint.API.Profiles.Domain.Models;
+﻿using TastyPoint.API.Profiles.Resources;
 
 namespace TastyPoint.API.Social.Resources;
 
@@ -11,5 +11,5 @@ public class FoodStoreResource
     public int Rate { get; set; }
     public bool Favorite { get; set; }
     public string Image { get; set; }
-    public UserProfile UserProfile { get; set; }
+    public UserProfileResource UserProfile { get; set; }
 }
