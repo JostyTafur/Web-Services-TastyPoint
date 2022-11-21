@@ -1,6 +1,7 @@
 ﻿using TastyPoint.API.Ordering.Domain.Models;
 using TastyPoint.API.Security.Domain.Models;
 using TastyPoint.API.Social.Domain.Models;
+using TastyPoint.API.Subscription.Domain.Models;
 
 namespace TastyPoint.API.Profiles.Domain.Models;
 

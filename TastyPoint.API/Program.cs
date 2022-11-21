@@ -39,6 +39,10 @@ using TastyPoint.API.Social.Domain.Repositories;
 using TastyPoint.API.Social.Domain.Services;
 using TastyPoint.API.Social.Persistence.Repositories;
 using TastyPoint.API.Social.Services;
+using TastyPoint.API.Subscription.Domain.Repositories;
+using TastyPoint.API.Subscription.Domain.Services;
+using TastyPoint.API.Subscription.Persistence.Repositories;
+using TastyPoint.API.Subscription.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -101,6 +105,10 @@ builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<IFoodStoreRepository, FoodStoreRepository>();
 builder.Services.AddScoped<IFoodStoreService, FoodStoreService>();
 
+//Subscription Bounded Context Dependency Injection Configuration
+builder.Services.AddScoped<IBusinessPlanRepository, BusinessPlanRepository>();
+builder.Services.AddScoped<IBusinessPlanService, BusinessPlanService>();
+
 //AutoMapper Configuration
 
 builder.Services.AddAutoMapper(
@@ -117,7 +125,9 @@ builder.Services.AddAutoMapper(
     typeof(TastyPoint.API.Profiles.Mapping.ModelToResourceProfile),
     typeof(TastyPoint.API.Profiles.Mapping.ResourceToModelProfile),
     typeof(TastyPoint.API.Social.Mapping.ModelToResourceProfile),
-    typeof(TastyPoint.API.Social.Mapping.ResourceToModelProfile));
+    typeof(TastyPoint.API.Social.Mapping.ResourceToModelProfile),
+    typeof(TastyPoint.API.Subscription.Mapping.ModelToResourceProfile),
+    typeof(TastyPoint.API.Subscription.Mapping.ResourceToModelProfile));
 
 builder.Services.AddSwaggerGen(options =>
     {
